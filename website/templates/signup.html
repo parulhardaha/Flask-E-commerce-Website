@@ -1,0 +1,38 @@
+{% extends 'forms.html' %}
+
+{% block title %} Sign Up {% endblock %} <!--defination of title-->
+
+{% block body %}   <!--defination of vody-->
+
+<!-- Sign Up section start -->
+<section class="base" id="base-signup">
+    <div class="base-content">
+        <div class="form">
+            <h3>
+                Create an account <br> to shop
+            </h3>
+            
+            <hr class="first">
+            <form method="POST">
+                <!--the val of form in frontend will can be accessed using {{}}-->
+                {{ form.hidden_tag() }} <!--csrf token-->
+
+                <div class="email"><h4>Email Address</h4>{{ form.email }} <hr> </div>
+                <div class="name"><h4>User Name</h4>{{ form.username }} <hr></div>
+                <div class="password"><h4>Password</h4>{{ form.password1 }} <hr></div>
+                <div class="password"><h4>Confirm Passoword</h4>{{ form.password2 }} <hr></div>
+                
+                <!--redirecting to login page-->
+                <div class="buttons">
+                    <a href="/login"> Already have an account? Login</a>
+                    {{ form.submit() }}
+                </div>
+
+
+            </form>
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}

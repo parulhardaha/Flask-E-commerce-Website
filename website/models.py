@@ -10,6 +10,7 @@ class Customer(db.Model, UserMixin):
     password_hash=db.Colmun(db.String(50))
     date_joined=db.Column(db.DateTime(), default=datetime.utcnow)
 
+    #Here, we are defining one-to-many relationships between the Customer model and the Cart & Order models
     cart_items=db.relationship('Cart', backref=db.backref('customer', lazy=True))
     orders=db.relationship('Order', backref=db.backref('customer', lazy=True))
     
