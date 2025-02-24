@@ -5,9 +5,9 @@ from werkzeug.security import generate_password_hash, check_password_hash # come
 
 class Customer(db.Model, UserMixin):
     id=db.Column(db.Integer, primary_key=True)
-    email=db.Colmun(db.String(50), unique=True)
-    username=db.Colmun(db.String(100))
-    password_hash=db.Colmun(db.String(50))
+    email=db.Column(db.String(50), unique=True)
+    username=db.Column(db.String(100))
+    password_hash=db.Column(db.String(50))
     date_joined=db.Column(db.DateTime(), default=datetime.utcnow)
 
     #Here, we are defining one-to-many relationships between the Customer model and the Cart & Order models
@@ -23,6 +23,7 @@ class Customer(db.Model, UserMixin):
     def password(self, password):
         self.password_hash=generate_password_hash(password=password)
 
+    #returns a boolean value
     def verify_password(self, password):
         return check_password_hash(self.password_hash, password=password)
 
@@ -40,16 +41,16 @@ class Product (db.Model):
     in_stock=db.Column(db.Integer, nullable=False)
     product_picture=db.Column(db.String(100), nullable=False)
     flash_sale=db.Column(db.Boolean, nullable=False)
-    date_added=db.Column(db.Datetime, default=datetime.utcnow)
+    date_added=db.Column(db.DateTime, default=datetime.utcnow)
 
     carts=db.relationship('Cart', backref=db.backref('product',lazy=True))
-    orders=db.relationship('Order', bakref=db.backref('product', lazy=True))
+    orders=db.relationship('Order', backref=db.backref('product', lazy=True))
     def __str__(self):
         return '<Product %r>' %self.product_name
     
 class Cart(db.Model):  
     id=db.Column(db.Integer, primary_key=True)
-    quantity=db.Column(db.Interger, nullable=False)
+    quantity=db.Column(db.Integer, nullable=False)
 
     customer_link=db.Column(db.Integer, db.ForeignKey('customer.id'), nullable=False)
     product_link=db.Column(db.Integer, db.ForeignKey('product.id'), nullable=False)
