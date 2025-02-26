@@ -15,7 +15,7 @@ def login():
         password=form.password.data
 
         #check if this particular customer exists in db
-        customer=Customer.query.filer_by(email=email).first  #unique email are there
+        customer=Customer.query.fiter_by(email=email).first()  #unique email are there
 
         if customer:
             if customer.verify_password(password=password):

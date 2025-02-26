@@ -1,45 +1,57 @@
-.d-flex .btn{
-    background: orange;
-    border: 2px solid orange;
-    border-radius: 8px;
-    color: #fff;
-}
-.d-flex .btn:hover{
-    background: rgb(228, 150, 7);
-    border: 2px solid rgb(228, 150, 7);
-}
-
-#right1 :hover{
-    color: orange;
-    transition: 300ms;
-}
-
-.row .right2 {
-    margin-left: -10px;
-    height: 180px;
-    width: 180px;
+/* Center form properly */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    max-width: 350px;  /* Adjust form width */
+    margin: auto;
+    background: rgba(255, 255, 255, 0.2); /* Light transparent background */
+    padding: 20px;
     border-radius: 10px;
 }
 
-.container .row .col .row .col a {
-    background-color: orange;
-    padding: 10px;
-    border-radius: 10px;
+/* Input fields */
+.input-group {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.input-field {
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* Buttons */
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+
+.signup-link {
+    color: blue;
     text-decoration: none;
+    font-size: 14px;
+}
+
+.login-btn {
+    background-color: #e40046;
     color: white;
-
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 5px;
 }
 
-.container .row .col .row .col a :hover {
-    background-color: rgb(201, 132, 5);
-}
-#column :hover{
-    transform: scale(0.9);
-    transition: 450ms;
-    border-radius: 10px;
-}
-
-#items :hover {
-    color: orange;
-    transition: 200ms;
+.login-btn:hover {
+    background-color: #c1003c;
 }

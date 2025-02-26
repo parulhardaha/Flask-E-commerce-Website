@@ -1,36 +1,38 @@
 {% extends 'forms.html' %}
 
-{% block title %} Login {% endblock %} <!--defination of title-->
+{% block title %} Login {% endblock %}
 
-{% block body %}   <!--defination of vody-->
-
-<!-- login section start -->
-<section class="base" id="base-signup">
+{% block body %}
+<section class="base">
     <div class="base-content">
-        <div class="form">
-            <h3>
-                Login to Start <br> Shopping
-            </h3>
-            
-
-            <form method="POST">
-                <!--the val of form in frontend will can be accessed using {{}}-->
-                {{ form.hidden_tag() }} <!--csrf token-->
-
-                <div class="email"><h4>Email Address</h4>{{ form.email }}  </div>
-                <div class="password"><h4>Password</h4>{{ form.password }} </div>
-                
-                <!--redirecting to sign up page-->
-                <div class="buttons">
-                    <a href="/sign-up"> Don't have an account? Sign up</a>
-                    {{ form.submit() }}
+        
+        <div class="form-container">
+            <h3 class="login-title">Login to Start Shopping</h3>
+        
+            <form method="POST" class="login-form">
+                {{ form.hidden_tag() }} <!-- CSRF token -->
+        
+                <div class="input-group">
+                    <label>Email Address</label>
+                    {{ form.email(class="input-field") }}
                 </div>
-
-
+        
+                <div class="input-group">
+                    <label>Password</label>
+                    {{ form.password(class="input-field") }}
+                </div>
+        
+                <!-- Login button centered -->
+                <div class="buttons">
+                    {{ form.submit(class="login-btn") }}
+                </div>
+        
+                <!-- Sign up link below button -->
+                <a href="{{ url_for('auth.sign_up') }}" class="signup-link">Don't have an account? Sign up</a>
             </form>
         </div>
+        
+          
     </div>
 </section>
-
-
 {% endblock %}
