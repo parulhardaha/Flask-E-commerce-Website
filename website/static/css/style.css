@@ -1,3 +1,76 @@
+/* ======= General Styles ======= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #ffe4e1; /* Soft pink background (Nykaa theme) */
+    color: #333;
+}
+
+/* ======= Navbar ======= */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 50px;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo-container img {
+    width: 50px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.logo-container h1 {
+    font-size: 22px;
+    font-weight: bold;
+    color: #e40046;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    margin: 0 15px;
+    transition: 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #e40046;
+    font-weight: bold;
+}
+
+/* ======= Page Content ======= */
+.content {
+    padding: 50px;
+    text-align: center;
+}
+
+/* ======= Footer (Fixed) ======= */
+.footer {
+    background: #e40046;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+
+/* ======= Login Page Styles ======= */
 /* Center form properly */
 .form-container {
     display: flex;
@@ -54,4 +127,15 @@
 
 .login-btn:hover {
     background-color: #c1003c;
+}
+
+.login-page {
+    background-image: url('/static/images/background.jpg'); /* Relative path */
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

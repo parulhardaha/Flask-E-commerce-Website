@@ -13,7 +13,10 @@ def create_database():
 
 
 def create_app():
-    app= Flask(__name__)
+    from flask import Flask
+
+    app = Flask(__name__)
+
     app.config['SECRET_KEY']="parulhardaha"
     app.config['SQLALCHEMY_DATABASE_URI']=f'sqlite:///{DB_NAME}'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  #Added this line to ignore
