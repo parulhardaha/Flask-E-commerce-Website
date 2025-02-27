@@ -81,7 +81,7 @@ body {
     width: 100%;
     max-width: 350px;  /* Adjust form width */
     margin: auto;
-    background: rgba(255, 255, 255, 0.2); /* Light transparent background */
+    background: rgba(237, 190, 190, 0.79); /* Light transparent background */
     padding: 20px;
     border-radius: 10px;
 }
@@ -138,4 +138,122 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+
+/* Background Fix */
+.base-signup {
+    background: url("{{ url_for('static', filename='images/sign.back.jpg') }}") no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh; /* Full screen height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* Input Fields */
+.input-group h4 {
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #333;
+}
+
+.form input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: rgb(224, 207, 207);
+    color: #333;
+    outline: none;
+}
+
+/* Buttons */
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.buttons a {
+    text-decoration: none;
+    color: #ff3f6c; /* Nykaa Pink */
+    font-weight: bold;
+}
+
+.buttons input[type="submit"] {
+    background: #ff3f6c;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+/* Background Image for Sign-Up Page */
+#base-signup {
+    background: url("../images/sign.back.jpg") no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+
+
+/* Form Heading */
+#base-signup .form h3 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #e36464;
+}
+
+/* Input Fields */
+#base-signup .input-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+#base-signup .input-group label {
+    font-weight: bold;
+    color: #333;
+}
+
+#base-signup .input-group .input-field {
+    width: 100%;
+    padding: 7px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background: white;
+}
+
+/* Buttons */
+#base-signup .buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+#base-signup .buttons a {
+    color: #ff6699;
+    text-decoration: none;
+}
+
+#base-signup .buttons a:hover {
+    text-decoration: underline;
+}
+
+/* Sign-Up Button */
+#base-signup .buttons input[type="submit"] {
+    background: #ff6699;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#base-signup .buttons input[type="submit"]:hover {
+    background: #ff3366;
 }

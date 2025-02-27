@@ -3,7 +3,7 @@
     box-sizing: border-box;
 }
 body{
-    background-image:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url('../images/background.jpg');
+    background-image:linear-gradient(rgba(0,0,0,0.5),rgba(204, 0, 0, 0.56)), url('../images/background.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     height: 100vh;
@@ -18,8 +18,8 @@ body{
 
 .base .base-content .form{
     height: 500px;
-    width: 300px;
-    background: rgba(0, 0, 0, 0.521);
+    width: 450px;
+    background: rgba(185, 176, 176, 0.224);
     border: 1px solid #FF723A;
     border-radius: 10px;
     text-align: center;
@@ -30,7 +30,7 @@ body{
 
 }
 .base .base-content .form h3{
-    color: #20D489;
+    color: #d9b5cb;
     font-family: cursive;
     font-size: 30px;
 }
@@ -38,7 +38,7 @@ body{
     width: 88%;
     margin-top: 30px;
     margin-left: 20px;
-    background-color: #FF723A;
+    background-color: #eae2de60;
 }
 #base-signup .base-content .form hr{
     margin-top: 2px;
@@ -64,12 +64,12 @@ body{
     margin-top: 10px;
     margin-left: 10px;
     font-size: 20px;
-    font-family: cursive;
+    font-family:'Times New Roman', Times, serif ;
     padding: 5 20px;
     text-decoration: none;
     color: #fff;
-    background:#20D489;
-    border: 2px solid #20D489;
+    background:#e0dbe1;
+    border: 2px solid #e5c5b6;
     border-radius: 25px;
     transition: all 0.3s ease;
 }

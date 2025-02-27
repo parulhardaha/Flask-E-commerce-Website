@@ -6,7 +6,6 @@
 
 <!-- Sign Up section start -->
 <section class="base" id="base-signup">
-    <div class="base-content">
         <div class="form">
             <h3>
                 Create an account <br> to shop
@@ -14,24 +13,39 @@
             
             <hr class="first">
             <form method="POST">
-                <!--the val of form in frontend will can be accessed using {{}}-->
+                <!--the val of form in frontend will can be accessed using jinja 2 brackets-->
                 {{ form.hidden_tag() }} <!--csrf token-->
 
-                <div class="email"><h4>Email Address</h4>{{ form.email }} <hr> </div>
-                <div class="name"><h4>User Name</h4>{{ form.username }} <hr></div>
-                <div class="password"><h4>Password</h4>{{ form.password1 }} <hr></div>
-                <div class="password"><h4>Confirm Passoword</h4>{{ form.password2 }} <hr></div>
+                <div class="input-group">
+                    <label>Email Address</label>
+                    {{ form.email(class="input-field") }}
+                </div>
+                
+                <div class="input-group">
+                    <label>User Name</label>
+                    {{ form.username(class="input-field") }}
+                </div>
+
+                <div class="input-group">
+                    <label>Password</label>
+                    {{ form.password1(class="input-field") }}
+                </div>
+
+                <div class="input-group">
+                    <label>Confirm Password</label>
+                    {{ form.password2(class="input-field") }}
+                </div>
                 
                 <!--redirecting to login page-->
                 <div class="buttons">
                     <a href="/login"> Already have an account? Login</a>
-                    {{ form.submit() }}
+                    {{ form.submit }}
                 </div>
 
 
             </form>
         </div>
-    </div>
+    
 </section>
 
 
