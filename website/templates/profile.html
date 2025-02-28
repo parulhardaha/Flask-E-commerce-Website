@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %} Profile {% endblock %}
+
+{% block body %}
+<div class="container profile-container my-5">
+    <div class="profile-card">
+        <div class="profile-header">
+            <h2>My Profile</h2>
+        </div>
+
+        <div class="profile-body">
+            <!--<div class="profile-image">
+                <img src="{{ url_for('static', filename='images/profile-default.png') }}" alt="Profile Picture">
+            </div> -->
+            <div class="profile-details">
+                <p><strong>Name:</strong> {{ current_user.username }}</p>
+                <p><strong>Email:</strong> {{ current_user.email }}</p>
+                <p><strong>Joined On:</strong> {{ current_user.date_joined.strftime('%d %b %Y') }}</p>
+            </div>
+        </div>
+
+        <div class="profile-actions">
+            <a href="/edit_profile" class="btn edit-btn">Edit Profile</a>
+            <a href="/change_password" class="btn edit-btn">Change Password</a>
+            <a href="/logout" class="btn logout-btn">Logout</a>
+            <a href="/logout" class="btn logout-btn">Logout</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

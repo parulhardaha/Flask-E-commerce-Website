@@ -35,7 +35,7 @@ body {
 .logo-container h1 {
     font-size: 22px;
     font-weight: bold;
-    color: #e40046;
+    color: #f8f7f7;
 }
 
 .nav-links a {
@@ -47,7 +47,7 @@ body {
 }
 
 .nav-links a:hover {
-    color: #e40046;
+    color: #f0d2db;
     font-weight: bold;
 }
 
@@ -59,7 +59,7 @@ body {
 
 /* ======= Footer (Fixed) ======= */
 .footer {
-    background: #e40046;
+    background: #f1628f;
     color: white;
     text-align: center;
     padding: 10px;
@@ -224,7 +224,7 @@ body {
     width: 100%;
     padding: 7px;
     border-radius: 5px;
-    border: 1px solid #ccc;
+    border: 1px solid #cccccc0b;
     background: white;
 }
 
@@ -257,3 +257,209 @@ body {
 #base-signup .buttons input[type="submit"]:hover {
     background: #ff3366;
 }
+.input-field {
+    color: black !important;
+}
+
+
+
+/* Ensure navbar and dropdown styles are correct */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ed5b7d; /* Nykaa theme pink */
+    padding: 10px 20px;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 12px;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+}
+
+/* Dropdown container */
+.dropdown {
+    position: relative;
+}
+
+/* Dropdown menu styling */
+.dropdown-menu {
+    background-color: white;
+    border: none;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    min-width: 150px;
+}
+
+/* Dropdown items */
+.dropdown-menu .dropdown-item {
+    color: #ff3e6c; /* Nykaa pink */
+    font-weight: bold;
+    padding: 8px 15px;
+    transition: 0.3s;
+}
+
+.dropdown-menu .dropdown-item:hover {
+    background-color: rgba(255, 62, 108, 0.1);
+}
+
+
+
+
+/* Profile Page Styling */
+.profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-card {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    width: 400px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.profile-header h2 {
+    color: #ff3e6c; /* Nykaa theme color */
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.profile-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-image img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid #ff3e6c;
+}
+
+.profile-details {
+    margin-top: 15px;
+}
+
+.profile-details p {
+    font-size: 16px;
+    color: #333;
+}
+
+.profile-actions {
+    margin-top: 20px;
+}
+
+.profile-actions .btn {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.edit-btn {
+    background-color: #ff3e6c;
+    color: white;
+}
+
+.logout-btn {
+    background-color: #333;
+    color: white;
+}
+
+
+
+/* Change Password Page */
+.change-password-container {
+    background: url("../images/profile.back.avif") no-repeat center center/cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.change-password-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 182, 193, 0.5); /* Light pink transparent overlay */
+    z-index: 1;
+}
+
+.password-form {
+    position: relative;
+    z-index: 2;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    text-align: center;
+}
+
+.password-form h2 {
+    color: #D63384; /* Nykaa pink */
+    margin-bottom: 20px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.input-field {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 10px;
+    background: #D63384;
+    color: white;
+    border: none;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    background: #c02775;
+}
+

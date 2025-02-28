@@ -30,7 +30,7 @@ body{
 
 }
 .base .base-content .form h3{
-    color: #d9b5cb;
+    color: #1c011200;
     font-family: cursive;
     font-size: 30px;
 }
@@ -57,7 +57,7 @@ body{
     background: none;
     border: none;
     outline: none;
-    color: #fff;
+    color: #ffffff00;
     font-size: 17px;
 }
 .base .base-content .form .buttons input, .base .base-content .form .buttons a{
@@ -67,7 +67,7 @@ body{
     font-family:'Times New Roman', Times, serif ;
     padding: 5 20px;
     text-decoration: none;
-    color: #fff;
+    color: #ffffff00;
     background:#e0dbe1;
     border: 2px solid #e5c5b6;
     border-radius: 25px;

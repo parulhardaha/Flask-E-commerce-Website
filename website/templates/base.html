@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nykaa | {% block title %} {% endblock %}</title>
     
-    <!-- External Styles -->
+    <!-- Bootstrap & External Styles -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-
 </head>
 <body>
 
@@ -23,7 +24,23 @@
             <a href="#">Contact Us</a>
             <a href="#">Cart</a>
             <a href="#">Wishlist</a>
-            <a href="#">Account</a>
+
+            <!-- Account Dropdown -->
+            <div class="dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="accountDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Account
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="accountDropdown">
+                    {% if current_user.is_authenticated %}
+                        <li><a class="dropdown-item" href="/profile{{ current_user.id }}">Profile<i class="fa-solid fa-user"></i></a></li>
+                        <li><a class="dropdown-item" href="#">Orders<i class="fa-solid fa-truck-fast"></i></a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                    {% else %}
+                        <li><a class="dropdown-item" href="/login">Login</a></li>
+                    {% endif %}
+                </ul>
+            </div>
         </div>
     </div>
 
