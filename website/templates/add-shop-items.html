@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %} Add Shop Items {% endblock %}
+
+{% block body %}
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4" style="color: #e76ea6; font-weight: bold;">Add New Shop Item</h2>
+
+    <table class="table table-bordered text-center align-middle" style="background-color: rgba(255, 182, 193, 0.3); border-radius: 10px;">
+        <thead style="background-color: #e76ea6; color: rgb(226, 188, 188);">
+            <tr>
+                <th scope="col">Product Name</th>
+                <th scope="col">Previous Price</th>
+                <th scope="col">Current Price</th>
+                <th scope="col">In Stock</th>
+                <th scope="col">Picture</th>
+                <th scope="col">Flash Sale</th>
+                <th scope="col">Add</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <form action="" method="POST" enctype="multipart/form-data">
+                    {{ form.hidden_tag() }}
+
+                    <td>{{ form.product_name(class="form-control", placeholder="Product Name") }}</td>
+                    <td>{{ form.previous_price(class="form-control", placeholder="₹0.00") }}</td>
+                    <td>{{ form.current_price(class="form-control", placeholder="₹0.00") }}</td>
+                    <td>{{ form.in_stock(class="form-control", placeholder="Quantity") }}</td>
+                    <td>{{ form.product_picture(class="form-control") }}</td>
+                    <td>
+                        <div class="form-check d-flex justify-content-center">
+                            {{ form.flash_sale(class="form-check-input") }}
+                        </div>
+                    </td>
+                    <td>
+                        {{ form.add_product(class="btn", style="background-color: #e76ea6; color: white; border-radius: 5px;") }}
+                    </td>
+                </form>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

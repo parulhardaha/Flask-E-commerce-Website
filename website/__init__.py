@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 
@@ -22,6 +22,10 @@ def create_app():
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  #Added this line to ignore
 
     db.init_app(app)  #initialie db with app
+
+    @app.errorhandler(404)
+    def page_not_found(error):
+        return render_template('404.html')
 
     login_manager=LoginManager() #keep track of customer,who have logged in
     login_manager.init_app(app)
