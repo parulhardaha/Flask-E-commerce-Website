@@ -24,7 +24,7 @@ def create_app():
     db.init_app(app)  #initialie db with app
 
     migrate = Migrate(app, db)
-    
+
     @app.errorhandler(404)
     def page_not_found(error):
         return render_template('404.html')
@@ -50,12 +50,12 @@ def create_app():
     app.register_blueprint(auth, url_prefix='/')
 
     with app.app_context():
-        print(f"Database URI ----->>>> {db.engine.url}")
+        #print(f"Database URI ----->>>> {db.engine.url}")
 
     #calling create_dp function
     # with app.app_context():
     #    create_database()
-    return app
+        return app
 
 
 

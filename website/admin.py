@@ -8,7 +8,7 @@ from website import db
 
 admin=Blueprint('admin', __name__)
 
-@admin .route('/media/<path:filename>') #<path:filename> pick filename from url
+@admin .route('/media/<path:filename>') #<path:filename> pick filename from url(dynamic)
 def get_image(filename):
     return send_from_directory('../media', filename)
 
@@ -66,7 +66,42 @@ def shop_items():
     else:
         return render_template('404.html')
 
+@admin.route('/update-item/<int:item_id>', methods=['GET', 'POST'])
+@login_required
+def update_item(item_id):
+    print(f"Item ID --> {item_id}")  # Debugging
 
+    if current_user.id == 1:
+        item_to_update = Product.query.get(item_id)
+        if not item_to_update:
+            flash("Item not found!", "danger")
+            return redirect(url_for('admin.shop_items'))
 
+        form = ShopItemsForm(obj=item_to_update)  #fetch with existing data
 
-      
+        #replace with updated values
+        if form.validate_on_submit():
+            item_to_update.product_name = form.product_name.data
+            item_to_update.previous_price = form.previous_price.data
+            item_to_update.current_price = form.current_price.data
+            item_to_update.in_stock = form.in_stock.data
+            item_to_update.flash_sale = form.flash_sale.data
+
+            if form.product_picture.data:
+                file = form.product_picture.data
+                file_name = secure_filename(file.filename)
+                file_path = f'./media/{file_name}'
+                file.save(file_path)
+                item_to_update.product_picture = file_path
+
+            try:
+                db.session.commit()
+                flash("Item updated successfully!", "success")
+                return redirect(url_for('admin.shop_items')) 
+            except Exception as e:
+                db.session.rollback()
+                flash(f"Error updating item: {e}", "danger")
+
+        return render_template('update-item.html', form=form, item=item_to_update) 
+    else:
+        return render_template('404.html')
