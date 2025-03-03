@@ -1,16 +1,16 @@
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
+from flask_migrate import Migrate
 
 
 db=SQLAlchemy()
-DB_NAME='database.sqllite3'  #db name
+DB_NAME='database.sqlite3'  #db name
 
 #fun to create db
 def create_database():
     db.create_all()
     print('OK created')
-
 
 def create_app():
     from flask import Flask
@@ -23,6 +23,8 @@ def create_app():
 
     db.init_app(app)  #initialie db with app
 
+    migrate = Migrate(app, db)
+    
     @app.errorhandler(404)
     def page_not_found(error):
         return render_template('404.html')
@@ -30,6 +32,7 @@ def create_app():
     login_manager=LoginManager() #keep track of customer,who have logged in
     login_manager.init_app(app)
     login_manager.login_view='auth.login'
+
 
     #identify user acc to thier primary key
     @login_manager.user_loader
@@ -46,8 +49,16 @@ def create_app():
     app.register_blueprint(admin, url_prefix='/')
     app.register_blueprint(auth, url_prefix='/')
 
+    with app.app_context():
+        print(f"Database URI ----->>>> {db.engine.url}")
+
     #calling create_dp function
-    #with app.app_context():
+    # with app.app_context():
     #    create_database()
-    
     return app
+
+
+
+
+
+
