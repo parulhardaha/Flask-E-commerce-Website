@@ -463,3 +463,42 @@ body {
     background: #c02775;
 }
 
+
+/*cart*/
+.text-pink {
+    color: #fc2779 !important;
+}
+
+.btn-pink {
+    background-color: #fc2779 !important;
+    border: none;
+    color: white !important;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.btn-pink:hover {
+    background-color: #d91d67 !important;
+    transition: 0.3s;
+}
+
+.card {
+    border-radius: 12px !important;
+}
+
+.minus-cart, .plus-cart {
+    display: inline-block;
+    padding: 6px 10px;
+    border: 1px solid #fc2779;
+    border-radius: 5px;
+    color: #fc2779;
+    background-color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.minus-cart:hover, .plus-cart:hover {
+    background-color: #fc2779;
+    color: white;
+}
+

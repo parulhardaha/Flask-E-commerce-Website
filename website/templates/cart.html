@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+
+{% block title %} Cart {% endblock %}
+
+{% block body %}
+<div class="container my-5">
+    <div class="row">
+        {% if cart %}
+        
+        <!-- Page Heading -->
+        <h1 class="text-center mb-5 text-pink">Your Shopping Cart</h1>
+        
+        <!-- Left Section: Product List -->
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-sm p-3">
+                <div class="card-body">
+                    {% for item in cart %}
+                    <div class="row align-items-center mb-4">
+                        <!-- Product Image -->
+                        <div class="col-md-3 text-center">
+                            <img src="{{ item.product.product_picture }}" alt="{{ item.product.product_name }}" class="img-fluid img-thumbnail shadow-sm rounded" height="150px" width="150px">
+                        </div>
+
+                        <!-- Product Details -->
+                        <div class="col-md-9">
+                            <h5 class="fw-bold text-dark">{{ item.product.product_name }}</h5>
+                            <p class="text-muted">Price: ₹{{ item.product.current_price }}</p>
+
+                            <!-- Quantity Update Buttons -->
+                            <div class="d-flex align-items-center">
+                                <label class="me-2">Quantity</label>
+                                <a class="minus-cart btn btn-light btn-sm shadow-sm" pid="{{item.id}}">
+                                    <i class="fa-solid fa-minus-circle text-pink"></i>
+                                </a>
+                                <span class="mx-2 fw-bold">{{ item.quantity }}</span>
+                                <a class="plus-cart btn btn-light btn-sm shadow-sm" pid="{{ item.id }}">
+                                    <i class="fa-solid fa-plus-circle text-pink"></i>
+                                </a>
+                            </div>
+
+                            <!-- Remove Button -->
+                            <div class="mt-3">
+                                <a href="#" class="remove-cart btn btn-sm btn-danger shadow-sm" pid="{{item.id}}">
+                                    <i class="fas fa-trash"></i> Remove
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Section: Cart Summary -->
+        <div class="col-lg-4">
+            <div class="card border-0 shadow-sm p-3">
+                <div class="card-body">
+                    <h4 class="fw-bold text-dark">Order Summary</h4>
+                    <hr>
+
+                    <ul class="list-group">
+                        {% for item in cart %}
+                        <li class="list-group-item border-0 px-0 d-flex justify-content-between align-items-center">
+                            <strong>{{ item.product.product_name }}</strong>
+                            <span>₹{{ item.product.current_price }} x <span id="quantity{{ item.id }}">{{ item.quantity }}</span></span>
+                        </li>
+                        {% endfor %}
+
+                        <li class="list-group-item border-0 px-0 d-flex justify-content-between">
+                            <strong>Subtotal</strong>
+                            <span>₹<span id="amount_tt">{{ amount }}</span></span>
+                        </li>
+
+                        <li class="list-group-item border-0 px-0 d-flex justify-content-between">
+                            <strong>Shipping</strong>
+                            <span>₹50</span>
+                        </li>
+
+                        <li class="list-group-item border-0 px-0 d-flex justify-content-between bg-light">
+                            <strong>Total</strong>
+                            <span class="fw-bold text-pink">₹<span id="totalamount">{{ total }}</span></span>
+                        </li>
+                    </ul>
+
+                    <!-- Place Order Button -->
+                    <div class="d-grid mt-3">
+                        <a href="/place-order" class="btn btn-pink shadow-sm fw-bold">Place Order</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% else %}
+
+        <!-- Empty Cart Message -->
+        <h1 class="text-center mb-5 text-muted">Your Cart is Empty!! 😔</h1>
+        <div class="text-center">
+            <a href="/home" class="btn btn-pink shadow-sm">Continue Shopping</a>
+        </div>
+
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

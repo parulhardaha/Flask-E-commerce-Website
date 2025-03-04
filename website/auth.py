@@ -73,7 +73,7 @@ def log_out():
     return redirect('/')
 
 #common templates for all customers
-@auth.route('/profile<int:customer_id>')
+@auth.route('/profile/<int:customer_id>')
 @login_required
 def profile(customer_id):
     #print('customer id :', customer_id)
