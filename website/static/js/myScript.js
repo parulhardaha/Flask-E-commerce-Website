@@ -66,6 +66,7 @@ $('.remove-cart').click(function(){
     
     var id = $(this).attr('pid').toString()
 
+    //parentNode represents every div that is to be removed
     var to_remove = this.parentNode.parentNode.parentNode.parentNode
 
     $.ajax({

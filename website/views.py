@@ -110,3 +110,27 @@ def minus_cart():
             }
         
         return jsonify(data)        
+    
+
+@views.route('/removecart')
+@login_required
+def remove_cart():
+    if request.method=='GET':
+        cart_id = request.args.get('cart_id')
+        cart_item   = Cart.query.get(cart_id)
+        db.session.delete(cart_item)
+        db.session.commit()
+
+        # Fetch updated cart data
+        cart = Cart.query.filter_by(customer_link=current_user.id).all()
+        amount = sum(item.product.current_price * item.quantity for item in cart)
+        
+
+        #sendding updated response to frontend
+        data={
+                'quantity': cart_item.quantity,
+                'amount' : amount,
+                'total': amount+100
+            }
+        
+        return jsonify(data)    
