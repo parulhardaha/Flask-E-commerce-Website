@@ -1,25 +1,124 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
-{% block title %} Home | Nykaa {% endblock %}
+{% block title %} Home {% endblock %}
 
-{% block content %}
-<div class="container text-center mt-5">
-    <h1>Welcome to Nykaa</h1>
-    <p>Your one-stop destination for beauty and wellness products.</p>
-    
-    <div class="row mt-4">
-        <div class="col-md-6">
-            <img src="{{ url_for('static', filename='images/home-banner.jpg') }}" class="img-fluid rounded" alt="Nykaa Products">
+{% block body %}
+
+<div class="container text-center">
+    <div class="row" style="margin: 10px;">
+      
+        <!-- Left Sidebar - Categories -->
+        <!--<div class="col-md-2" style="margin: 3px;">
+            <div class="list-group" id="category-sidebar" style="border-radius: 10px; background: #fce4ec;">
+                <a href="" class="list-group-item list-group-item-action">
+                    <i class="fa fa-magic" aria-hidden="true"></i>
+                    <span class="link-name">Makeup</span>
+                </a>
+                <a href="" class="list-group-item list-group-item-action">
+                    <i class="fa fa-leaf" aria-hidden="true"></i>
+                    <span class="link-name">Skincare</span>
+                </a>
+                <a href="" class="list-group-item list-group-item-action">
+                    <i class="fa fa-tint" aria-hidden="true"></i>
+                    <span class="link-name">Haircare</span>
+                </a>
+                <a href="" class="list-group-item list-group-item-action">
+                    <i class="fa fa-heartbeat" aria-hidden="true"></i>
+                    <span class="link-name">Wellness</span>
+                </a>
+                <a href="" class="list-group-item list-group-item-action">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <span class="link-name">Luxury Beauty</span>
+                </a>
+                <a href="" class="list-group-item list-group-item-action">
+                    <i class="fa fa-smile" aria-hidden="true"></i>
+                    <span class="link-name">Personal Care</span>
+                </a>
+                <a href="" class="list-group-item list-group-item-action">
+                    <i class="fa fa-diamond" aria-hidden="true"></i>
+                    <span class="link-name">Fragrances</span>
+                </a>
+            </div>
+        </div> -->
+
+ 
+        <!-- Right Sidebar - Services -->
+        <!--<div class="col-md-3">
+            <div class="row" style="background-color: white; border-radius: 10px; padding: 10px;">
+                <div class="col">
+                    <img src="../static/images/help.png" alt="Help" style="width: 30px; height: 30px;">
+                </div>
+                <div class="col">
+                    <h6 style="font-size: 12px; font-weight: 600;">CUSTOMER SUPPORT</h6>
+                    <p style="font-size: small; color: gray;">24/7 Assistance</p>
+                </div>
+            </div>
+
+            <div class="row" style="background-color: white; border-radius: 10px; padding: 10px; margin-top: 10px;">
+                <div class="col">
+                    <img src="../static/images/return.png" alt="Returns" style="width: 30px; height: 30px;">
+                </div>
+                <div class="col">
+                    <h6 style="font-size: 12px; font-weight: 600;">HASSLE-FREE RETURNS</h6>
+                    <p style="font-size: small; color: gray;">Easy Refund Policy</p>
+                </div>
+            </div>
+
+            <div class="row" style="background-color: white; border-radius: 10px; padding: 10px; margin-top: 10px;">
+                <div class="col">
+                    <img src="../static/images/payment.png" alt="Payment" style="width: 30px; height: 30px;">
+                </div>
+                <div class="col">
+                    <h6 style="font-size: 12px; font-weight: 600;">SECURE PAYMENTS</h6>
+                    <p style="font-size: small; color: gray;">100% Safe Transactions</p>
+                </div>
+            </div>
+
+            <div class="row" style="margin-top: 12px;">
+                <div class="col">
+                    <img src="../static/images/nykaa_sale.gif" alt="Offers" style="width: 100%; border-radius: 10px;">
+                </div>
+            </div>
         </div>
-        <div class="col-md-6">
-            <h3>Why Shop with Us?</h3>
-            <ul class="list-unstyled">
-                <li>✔ 100% Authentic Products</li>
-                <li>✔ Exclusive Offers & Discounts</li>
-                <li>✔ Fast & Secure Checkout</li>
-            </ul>
-            <a href="#" class="btn btn-primary mt-3">Shop Now</a>
+    </div>
+</div>  -->
+
+<!-- Featured Categories -->
+<div class="container text-center">
+    <div class="row" style="margin: 8px;">
+        <div class="col category-box">
+            <img src="../static/images/nykaa_promo_1.gif" alt="" style="width: 250px; height: 250px;">
+            <h6><b>New Makeup Arrivals</b></h6>
+        </div>
+        <div class="col category-box">
+            <img src="../static/images/nykaa_promo_2.gif" alt="" style="width: 250px; height: 250px;">
+            <h6><b>Best in Skincare</b></h6>
+        </div>
+        <div class="col category-box">
+            <img src="../static/images/nykaa_promo_improved_3.gif" alt="" style="width: 250px; height: 250px;">
+            <h6><b> Essentials</b></h6>
+        </div>
+        <div class="col category-box">
+            <img src="../static/images/nykaa_promo_improved_4.gif" alt="" style="width: 250px; height: 250px;">
+            <h6><b>Luxury Fragrances</b></h6>
         </div>
     </div>
 </div>
+
+<!-- Product Listings -->
+<div class="container text-center">
+    <div class="row" style="margin: 8px; background-color: rgb(219, 218, 218);">
+        {% for item in items %}
+        <div class="col product-card" style="background-color: white; border-radius: 10px; padding: 10px; margin: 10px;">
+            <img src="{{ item.product_picture }}" alt="{{ item.product_name }}" style="height: 202px; width: 180px; border-radius: 10px;">
+            <h6 style="color: gray; margin-top: 5px;">{{ item.product_name }}</h6>
+            <h5 style="font-weight: 600; font-family: 'Arial', sans-serif;">₹{{ item.current_price }}</h5>
+            <strike><p style="color: gray;">₹{{ item.previous_price }}</p></strike>
+            <p style="color: gray;">{{ item.in_stock }} Left</p>
+            <a href="/add-to-cart/{{ item.id }}" class="btn btn-primary" style="background-color: #e91e63; border: none;">Add to Cart</a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
 {% endblock %}
