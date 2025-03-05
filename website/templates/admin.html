@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %} Admin Dashboard {% endblock %}
+
+{% block body %}
+
+<div class="container mt-5">
+    <h2 class="text-center" style="color: #d63384; font-weight: bold;">✨ Admin Dashboard ✨</h2>
+    <div class="table-responsive">
+        <table class="table table-bordered text-center align-middle" style="border-color: #f3a6c8;">
+            <thead class="table-light" style="background-color: #ffe0ec;">
+                <tr>
+                    <th scope="col">Customers</th>
+                    <th scope="col">Shop Items</th>
+                    <th scope="col">Add Shop Items</th>
+                    <th scope="col">View Orders</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <a href="/customers" class="btn btn-outline-primary btn-sm shadow-sm" 
+                           style="border-radius: 20px; color: #d63384; border-color: #d63384;">
+                            👥 Customers
+                        </a>
+                    </td>
+                    <td>
+                        <a href="/shop_items" class="btn btn-outline-success btn-sm shadow-sm" 
+                           style="border-radius: 20px; color: #28a745; border-color: #28a745;">
+                            🛍 Shop Items
+                        </a>
+                    </td>
+                    <td>
+                        <a href="/add-shop-items" class="btn btn-outline-warning btn-sm shadow-sm" 
+                           style="border-radius: 20px; color: #ff8c00; border-color: #ff8c00;">
+                            ➕ Add Shop Items
+                        </a>
+                    </td>
+                    <td>
+                        <a href="/view-orders" class="btn btn-outline-danger btn-sm shadow-sm" 
+                           style="border-radius: 20px; color: #dc3545; border-color: #dc3545;">
+                            📦 View Orders
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}
