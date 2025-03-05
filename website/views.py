@@ -177,3 +177,10 @@ def place_order():
         print("Order Error:", e)
         flash(f"Order not Placed: {e}")
         return redirect('/')
+
+#view list of orders
+@views.route('/orders')
+@login_required
+def order():
+    orders=Order.query.filter_by(customer_link=current_user.id)
+    return render_template('orders.html', orders=orders)

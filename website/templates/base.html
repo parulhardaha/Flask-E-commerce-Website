@@ -54,7 +54,7 @@
                 <ul class="dropdown-menu" aria-labelledby="accountDropdown">
                     {% if current_user.is_authenticated %}
                     <li><a class="dropdown-item" href="/profile/{{ current_user.id }}"><i class="fa-solid fa-user"></i> Profile</a></li>
-                    <li><a class="dropdown-item" href="#"><i class="fa-solid fa-truck-fast"></i> Orders</a></li>
+                    <li><a class="dropdown-item" href="/orders"><i class="fa-solid fa-truck-fast"></i> Orders</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="/logout"><i class="fa-solid fa-sign-out-alt"></i> Logout</a></li>
                     {% else %}
