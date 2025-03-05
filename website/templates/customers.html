@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %} Customers {% endblock %}
+
+{% block body %}
+
+<div class="container my-5">
+    <h1 class="text-center mb-4 text-pink fw-bold">👥 Our Customers</h1>
+
+    <div class="table-responsive">
+        <table class="table shadow-lg rounded-4 overflow-hidden">
+            <thead class="bg-pink text-white text-uppercase fw-bold">
+                <tr>
+                    <th scope="col" class="py-3 text-center">Customer ID</th>
+                    <th scope="col" class="py-3 text-center">Username</th>
+                    <th scope="col" class="py-3 text-center">Email</th>
+                    <th scope="col" class="py-3 text-center">Date Joined</th>
+                </tr>
+            </thead>
+            <tbody class="bg-white text-dark">
+                {% for customer in customers %}
+                <tr class="border-bottom">
+                    <td class="fw-semibold py-3 text-center">{{ customer.id }}</td>
+                    <td class="py-4 text-center">
+                        <span class="badge bg-light text-dark fw-bold px-3 py-2 shadow-sm">
+                            {{ customer.username }}
+                        </span>
+                    </td>
+                    <td class="py-3 text-center text-muted">{{ customer.email }}</td>
+                    <td class="py-3 text-center">
+                        <span class="badge bg-secondary text-white px-3 py-2 shadow-sm">
+                            {{ customer.date_joined.strftime('%d %b, %Y') }}
+                        </span>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

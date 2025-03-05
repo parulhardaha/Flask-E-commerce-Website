@@ -2,7 +2,7 @@ from flask import Blueprint, render_template,flash, redirect, url_for,send_from_
 from flask_login import login_required, current_user
 from .forms import ShopItemsForm
 from werkzeug.utils import secure_filename
-from .models import Product
+from .models import Product, Customer
 from . import db
 from website import db
 
@@ -123,3 +123,24 @@ def delete_item(item_id):
     
     else:
         return render_template('404.html')
+
+
+
+@admin.route('/customers')
+@login_required
+def display_required():
+    if current_user.id==1:
+        customers=Customer.query.all()
+        return render_template('customers.html', customers=customers)
+    else:
+        render_template('404.html')
+
+
+@admin.route('/admin-page')
+@login_required
+def admin_page():
+    if current_user.id==1:
+        return render_template('admin.html') 
+    else:
+        render_template('404.html')       
+    
