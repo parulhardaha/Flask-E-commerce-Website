@@ -6,10 +6,10 @@
 <div class="container my-5">
     <div class="row">
         {% if cart %}
-        
+
         <!-- Page Heading -->
         <h1 class="text-center mb-5 text-pink">Your Shopping Cart</h1>
-        
+
         <!-- Left Section: Product List -->
         <div class="col-lg-8">
             <div class="card border-0 shadow-sm p-3">
@@ -74,7 +74,7 @@
 
                         <li class="list-group-item border-0 px-0 d-flex justify-content-between">
                             <strong>Shipping</strong>
-                            <span>₹50</span>
+                            <span>₹100</span>
                         </li>
 
                         <li class="list-group-item border-0 px-0 d-flex justify-content-between bg-light">
@@ -85,7 +85,7 @@
 
                     <!-- Place Order Button -->
                     <div class="d-grid mt-3">
-                        <a href="/place-order" class="btn btn-pink shadow-sm fw-bold">Place Order</a>
+                        <a href="/place_order" class="btn btn-pink shadow-sm fw-bold">Place Order</a>
                     </div>
                 </div>
             </div>
@@ -93,10 +93,11 @@
 
         {% else %}
 
-        <!-- Empty Cart Message -->
-        <h1 class="text-center mb-5 text-muted">Your Cart is Empty!! 😔</h1>
+        <!-- Empty Cart Message with GIF -->
         <div class="text-center">
-            <a href="/home" class="btn btn-pink shadow-sm">Continue Shopping</a>
+            <img src="{{ url_for('static', filename='images/your_cart_empty_no_brand.gif') }}" alt="Empty Cart" class="img-fluid" style="max-width: 400px;">
+            <h1 class="mt-3 text-muted">Glow up your cart, Glow up your vibe! ✨</h1>
+            <a href="{{ url_for('views.home') }}" class="btn btn-pink shadow-sm mt-3">Continue Shopping</a>
         </div>
 
         {% endif %}

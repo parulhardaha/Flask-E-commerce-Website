@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %} Order Confirmation {% endblock %}
+
+{% block body %}
+<div class="container text-center my-5">
+    <img id="loadingGif" src="{{ url_for('static', filename='images/loader.gif.gif') }}" alt="Loading..." class="img-fluid" width="400px">
+    <h2 class="mt-4" id="countdownText">Placing your order in <span id="countdown">5</span> seconds...</h2>
+
+    <div id="orderSuccess" style="display: none;">
+        <h1 class="text-success mt-4">🎉 Congratulations! Your order has been placed! 🎉</h1>
+        <a href="{{ url_for('views.home') }}" class="btn btn-pink shadow-sm mt-3">Continue Shopping</a>
+    </div>
+</div>
+
+<script>
+    let countdown = 5;
+    let countdownInterval = setInterval(() => {
+        countdown--;
+        document.getElementById("countdown").innerText = countdown;
+
+        if (countdown <= 0) {
+            clearInterval(countdownInterval);
+            document.getElementById("loadingGif").style.display = "none";
+            document.getElementById("countdownText").style.display = "none";
+            document.getElementById("orderSuccess").style.display = "block";
+        }
+    }, 1000);
+</script>
+{% endblock %}

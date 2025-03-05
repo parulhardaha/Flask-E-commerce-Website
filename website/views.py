@@ -1,10 +1,16 @@
 from flask import Blueprint, render_template, flash, redirect, request, jsonify
-from .models import Product, Cart
+from .models import Product, Cart, Order
 from flask_login import login_required, current_user
 from . import db
+from intasend import APIService
 
 
 views=Blueprint('views', __name__)
+
+#place odrer API
+API_PUBLISH_KEY= 'ISPubKey_test_7b41d97b-2478-4c1d-8f41-c36a5a3a870b'
+API_TOKEN='ISSecretKey_test_78f801c5-6015-473d-8fa7-dfca459c2cee'
+
 
 
 @views.route('/')
@@ -134,3 +140,40 @@ def remove_cart():
             }
         
         return jsonify(data)    
+
+
+@views.route('/place_order')
+@login_required
+def place_order():
+    customer_cart = Cart.query.filter_by(customer_link=current_user.id).all()
+    
+    if not customer_cart:
+        flash("Your Cart is Empty")
+        return redirect('/')
+
+    try:
+        #taking order placement
+        for item in customer_cart:
+            new_order = Order()
+            new_order.quantity = item.quantity
+            new_order.price = item.product.current_price
+            new_order.status = "Confirmed"  # Fake status
+            new_order.product_link = item.product_link
+            new_order.customer_link = item.customer_link
+
+            db.session.add(new_order)
+
+            # Reduce stock
+            product = Product.query.get(item.product_link)
+            product.in_stock -= item.quantity
+
+            # Remove from cart
+            db.session.delete(item)
+
+        db.session.commit()
+        return render_template("order_confirmation.html")
+
+    except Exception as e:
+        print("Order Error:", e)
+        flash(f"Order not Placed: {e}")
+        return redirect('/')
