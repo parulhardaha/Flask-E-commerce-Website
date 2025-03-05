@@ -184,3 +184,17 @@ def place_order():
 def order():
     orders=Order.query.filter_by(customer_link=current_user.id)
     return render_template('orders.html', orders=orders)
+
+@views.route('/search', methods=['GET'])
+def search():
+    search_query = request.args.get('query', '')  # Get the search query from URL parameters
+    
+    if search_query:  # If search_query is not empty
+        items = Product.query.filter(Product.product_name.ilike(f'%{search_query}%')).all()
+    else:
+        items = [] 
+    
+    cart_items = Cart.query.filter_by(customer_link=current_user.id).all() if current_user.is_authenticated else []
+
+    return render_template('search.html', items=items, cart=cart_items)
+    

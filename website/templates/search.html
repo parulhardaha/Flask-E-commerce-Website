@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %} Search Results {% endblock %}
+
+{% block body %}
+
+<div class="container mt-4">
+    {% if items | length < 1 %}
+        <h3 class="text-center text-muted">😞 No Items Match Your Search Query</h3>
+    {% else %}
+        <h2 class="text-center" style="color: #d63384; font-weight: bold;">✨ Search Results ✨</h2>
+        
+        <div class="row row-cols-1 row-cols-md-4 g-4 mt-3">
+            {% for item in items %}
+                <div class="col">
+                    <div class="card h-100 shadow-sm border-0" style="border-radius: 15px; background-color: #fff;">
+                        <img src="{{ item.product_picture }}" class="card-img-top p-3" alt="Product Image"
+                             style="height: 220px; object-fit: cover; border-radius: 10px;">
+                        
+                        <div class="card-body text-center">
+                            <h6 class="text-muted">{{ item.product_name }}</h6>
+                            <h5 class="fw-bold" style="color: #d63384;">Ksh {{ item.current_price }}</h5>
+                            <strike><p class="text-muted" style="font-size: 14px;">Ksh {{ item.previous_price }}</p></strike>
+                            <p class="text-muted" style="font-size: 13px;">{{ item.in_stock }} Items Left</p>
+                        </div>
+
+                        <div class="card-footer bg-white border-0 text-center pb-3">
+                            <a href="/add-to-cart/{{ item.id }}" class="btn btn-pink shadow-sm px-4"
+                               style="border-radius: 20px; background-color: #ff4081; color: white; font-weight: bold;">
+                                🛒 Add to Cart
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
+
+{% endblock %}
