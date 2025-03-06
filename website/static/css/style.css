@@ -10,7 +10,6 @@ body {
     background: #ffe4e1; /* Soft pink background (Nykaa theme) */
     color: #333;
 }
-
 /* ======= Navbar ======= */
 .navbar {
     display: flex;
@@ -79,10 +78,10 @@ body {
     justify-content: center;
     text-align: center;
     width: 100%;
-    max-width: 350px;  /* Adjust form width */
+    max-width: 450px;  /* Adjust form width */
     margin: auto;
     background: rgba(237, 190, 190, 0.79); /* Light transparent background */
-    padding: 20px;
+    padding: 100px;
     border-radius: 10px;
 }
 
@@ -90,14 +89,14 @@ body {
 .input-group {
     width: 100%;
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction:column;
+    align-items:flex-start;
     margin-bottom: 10px;
 }
 
 .input-field {
     width: 100%;
-    padding: 8px;
+    padding: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
 }
@@ -134,7 +133,7 @@ body {
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
-    height: 100vh;
+    height:100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -547,3 +546,25 @@ body {
 }
 
 
+.about-container {
+    background: url("{{ url_for('static', filename='images/about.webp') }}") no-repeat center center/cover;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    text-align: center;
+    padding: 20px;
+}
+
+.overlay-text {
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 1.6;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 80%;
+    font-family: 'Times New Roman', serif;
+}

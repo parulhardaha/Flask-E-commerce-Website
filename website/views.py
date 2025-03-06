@@ -198,3 +198,9 @@ def search():
 
     return render_template('search.html', items=items, cart=cart_items)
     
+
+
+@views.route('/about')
+def about():
+    return render_template('/about.html')
+    
