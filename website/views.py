@@ -60,7 +60,7 @@ def show_cart():
     for item in cart:
         amount+=item.product.current_price*item.quantity
 
-    return render_template('cart.html',cart=cart,amount=amount,total=amount+100)    
+    return render_template('cart.html', cart=cart,amount=amount,total=amount+100)    
 
 
 @views.route('/pluscart')
@@ -96,11 +96,16 @@ def minus_cart():
     if request.method=='GET':
         cart_id=request.args.get('cart_id')
         
-        #increase val
+        #de val
         # Fetch cart item from database
         cart_item = Cart.query.get(cart_id)
+
         if cart_item:
-            cart_item.quantity -= 1  #decrease quantity
+            cart_item.quantity -= 1
+            db.session.commit()
+
+        if cart_item.quantity == 0:
+            db.session.delete(cart_item)
             db.session.commit() 
 
         # Fetch updated cart data
@@ -188,15 +193,13 @@ def order():
 @views.route('/search', methods=['GET'])
 def search():
     search_query = request.args.get('query', '')  # Get the search query from URL parameters
-    
+    print("seacrhed for--> ",search_query)
     if search_query:  # If search_query is not empty
         items = Product.query.filter(Product.product_name.ilike(f'%{search_query}%')).all()
     else:
         items = [] 
     
-    cart_items = Cart.query.filter_by(customer_link=current_user.id).all() if current_user.is_authenticated else []
-
-    return render_template('search.html', items=items, cart=cart_items)
+    return render_template('search.html', items=items, search_query=search_query)
     
 
 

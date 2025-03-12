@@ -8,7 +8,7 @@
     {% if items | length < 1 %}
         <h3 class="text-center text-muted">😞 No Items Match Your Search Query</h3>
     {% else %}
-        <h2 class="text-center" style="color: #d63384; font-weight: bold;">✨ Search Results ✨</h2>
+        <h2 class="text-center" style="color: #d63384; font-weight: bold;">✨ Search Results For "{{search_query}}"✨</h2>
         
         <div class="row row-cols-1 row-cols-md-4 g-4 mt-3">
             {% for item in items %}

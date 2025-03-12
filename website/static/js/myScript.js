@@ -85,3 +85,4 @@ $('.remove-cart').click(function(){
 
 
 })
+
