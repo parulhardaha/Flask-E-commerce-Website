@@ -14,9 +14,9 @@ API_TOKEN='ISSecretKey_test_78f801c5-6015-473d-8fa7-dfca459c2cee'
 @views.route('/')
 def home():
     items=Product.query.filter_by(flash_sale=True)
-    #user_wishlist = [w.product_link for w in Wishlist.query.filter_by(customer_link=current_user.id).all()] if current_user.is_authenticated else []
+    user_wishlist = [w.product_link for w in Wishlist.query.filter_by(customer_link=current_user.id).all()] if current_user.is_authenticated else []
     return render_template('home.html', items=items, cart=Cart.query.filter_by(customer_link=current_user.id).all()
-                           if current_user.is_authenticated else [])
+                           if current_user.is_authenticated else [],user_wishlist=user_wishlist)
 
 
 @views.route('/add-to-cart/<int:item_id>')

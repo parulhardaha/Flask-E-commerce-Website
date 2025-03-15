@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
@@ -5,11 +6,11 @@ from flask_migrate import Migrate
 
 
 db=SQLAlchemy()
-DB_NAME='database.sqlite3'  #db name
+DB_NAME = os.path.join(os.getcwd(), 'instance', 'database.sqlite3')
 
 #fun to create db
 def create_database():
-    #db.create_all()
+    db.create_all()
     print('OK created')
 
 def create_app():
@@ -50,9 +51,9 @@ def create_app():
     app.register_blueprint(admin, url_prefix='/')
     app.register_blueprint(auth, url_prefix='/')
 
-    # with app.app_context():
-    #    create_database()
-    
+    with app.app_context():
+        print(f"Database URI ----->>>> {db.engine.url}")
+        # create_database()
     return app
 
 
