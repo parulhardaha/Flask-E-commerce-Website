@@ -18,6 +18,11 @@
                                 <h4 class="fw-bold text-dark">{{ item.product.product_name }}</h4>
                                 <p class="text-muted mb-1">Price: <strong>₹{{ item.product.current_price }}</strong></p>
                             </div>
+                            <form action="/move_to_cart/{{ item.product.id }}" method="POST">
+                                <button type="submit">Move to Cart</button>
+                            </form>
+                            
+                            
                         </div>
                         <hr>
                         {% endfor %}

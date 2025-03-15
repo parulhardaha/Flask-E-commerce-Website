@@ -86,3 +86,24 @@ $('.remove-cart').click(function(){
 
 })
 
+
+
+$(document).on("click", ".move-to-cart-btn", function () {
+    let productId = $(this).data("product-id");  // Get product ID from data attribute
+    let cartId = $(this).data("cart-id");  // Get cart ID
+
+    $.ajax({
+        type: "POST",
+        url: "/pluscart",
+        data: { cart_id: cartId },  // Send cart_id in POST request
+        success: function (response) {
+            alert("Item moved to cart successfully!");
+            console.log(response);
+        },
+        error: function (error) {
+            console.log(error.responseJSON);
+            alert("Error moving item to cart!");
+        }
+    });
+});
+

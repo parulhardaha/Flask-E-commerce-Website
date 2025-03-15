@@ -7,7 +7,7 @@ class Customer(db.Model, UserMixin):
     id=db.Column(db.Integer, primary_key=True)
     email=db.Column(db.String(50), unique=True)
     username=db.Column(db.String(100))
-    password_hash=db.Column(db.String(50))
+    password_hash=db.Column(db.String(200))
     date_joined=db.Column(db.DateTime(), default=datetime.utcnow)
 
     #Here, we are defining one-to-many relationships between the Customer model and the Cart & Order models
@@ -86,6 +86,6 @@ class Wishlist(db.Model):
 
     #cart_item_1.product.any col name of product table
     def __repr__(self):
-        return f"<Wishlist {self.id} - User {self.user_id} - Product {self.product_id}>"
-    
+        return f"<Wishlist {self.id} - Customer {self.customer_link} - Product {self.product_link}>"
+
     
