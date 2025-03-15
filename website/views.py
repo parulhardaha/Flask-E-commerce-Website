@@ -272,5 +272,7 @@ def move_to_cart(product_id):
         # Save changes
         db.session.commit()
         flash("Item moved to cart!", "success")
+
+    cart_items = Cart.query.filter_by(customer_link=current_user.id).all()    
     
-    return redirect(url_for('views.wishlist'))
+    return redirect(url_for('views.show_cart'))
