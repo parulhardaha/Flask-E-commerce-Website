@@ -9,7 +9,7 @@ DB_NAME='database.sqlite3'  #db name
 
 #fun to create db
 def create_database():
-    db.create_all()
+    #db.create_all()
     print('OK created')
 
 def create_app():
@@ -19,6 +19,7 @@ def create_app():
 
     app.config['SECRET_KEY']="parulhardaha"
     app.config['SQLALCHEMY_DATABASE_URI']=f'sqlite:///{DB_NAME}'
+    
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  #Added this line to ignore
 
     db.init_app(app)  #initialie db with app
@@ -49,13 +50,10 @@ def create_app():
     app.register_blueprint(admin, url_prefix='/')
     app.register_blueprint(auth, url_prefix='/')
 
-    with app.app_context():
-        #print(f"Database URI ----->>>> {db.engine.url}")
-
-    #calling create_dp function
     # with app.app_context():
     #    create_database()
-        return app
+    
+    return app
 
 
 

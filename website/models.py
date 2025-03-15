@@ -13,6 +13,7 @@ class Customer(db.Model, UserMixin):
     #Here, we are defining one-to-many relationships between the Customer model and the Cart & Order models
     cart_items=db.relationship('Cart', backref=db.backref('customer', lazy=True))
     orders=db.relationship('Order', backref=db.backref('customer', lazy=True))
+    #wishlist_items = db.relationship('Wishlist', backref='customer', lazy=True)
     
     # for password hashing
     @property
@@ -43,6 +44,7 @@ class Product (db.Model):
 
     carts=db.relationship('Cart', backref=db.backref('product',lazy=True))
     orders=db.relationship('Order', backref=db.backref('product', lazy=True))
+
     def __str__(self):
         return '<Product %r>' %self.product_name
     
@@ -70,3 +72,20 @@ class Order(db.Model):
     def __str__(self):
         return '<Order %r>' %self.id 
       
+
+class Wishlist(db.Model):  
+    id=db.Column(db.Integer, primary_key=True)
+    #quantity=db.Column(db.Integer, nullable=False)
+
+    customer_link=db.Column(db.Integer, db.ForeignKey('customer.id'), nullable=False)
+    product_link=db.Column(db.Integer, db.ForeignKey('product.id'), nullable=False)
+
+    product = db.relationship('Product', backref='wishlist_items', lazy=True)
+    customer = db.relationship('Customer', backref='wishlist_items', lazy=True)
+
+
+    #cart_item_1.product.any col name of product table
+    def __repr__(self):
+        return f"<Wishlist {self.id} - User {self.user_id} - Product {self.product_id}>"
+    
+    

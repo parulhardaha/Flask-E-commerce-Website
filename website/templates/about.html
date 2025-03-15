@@ -4,13 +4,44 @@
 
 {% block body %}
 
+<style>
+    .about-container {
+        position: relative;
+        width: 100%;
+        height: 100vh; /* Full viewport height */
+        background: url("{{ url_for('static', filename='images/lady.webp') }}") no-repeat center center;
+        background-size: cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 7px;
+    }
+
+    .overlay-text {
+        background: rgba(255, 255, 255, 0.6); /* Light transparent background */
+        padding: 20px;
+        border-radius: 10px;
+        max-width: 800px;
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: #333;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+</style>
+
 <div class="about-container">
     <div class="overlay-text">
         <p>
-            "The beauty of a woman is not just in the elegance of her features but in the depth of her soul.
-            It’s in her strength, her kindness, and the way she carries herself with grace.
-            She is a canvas of emotions, painted with resilience, love, and dreams.
-            Her beauty shines brightest when she is unapologetically herself—fearless, radiant, and endlessly inspiring."
+            Our Nykaa-themed e-commerce platform is designed to offer a seamless and elegant shopping experience, combining beauty with technology. With a user-friendly interface, customers can explore a diverse range of beauty and skincare products effortlessly. Advanced search and filtering features allow personalized browsing, ensuring a smooth and efficient shopping journey. Every element is crafted to enhance accessibility and convenience, making online shopping more engaging.
+        </p>
+
+        <p>
+            The platform features real-time cart and wishlist management, allowing users to update quantities, remove items, and save favorites without refreshing the page. A secure authentication system ensures safe logins, order tracking, and profile management, while role-based access gives administrators control over inventory and order processing. Smart inventory handling automatically updates product availability, ensuring a hassle-free user experience.  
+        </p>
+
+        <p>
+            Built with Flask, SQLite, Bootstrap, and AJAX, the platform ensures responsiveness, security, and efficiency. Aesthetic design, combined with powerful backend functionality, makes the shopping experience smooth and visually appealing. Every feature, from product discovery to checkout, is crafted to deliver a refined and modern e-commerce experience.  
         </p>
     </div>
 </div>

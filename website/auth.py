@@ -25,7 +25,7 @@ def login():
             else:
                 flash('Incorrect Email or Password')    
         else:
-            flash('Account does not exist please Sign Up')    
+            flash('Account does not exist please Sign Up', category='error')    
     return render_template('login.html', form=form)
 
 @auth.route('/sign-up', methods=['GET', 'POST'])
@@ -51,7 +51,7 @@ def sign_up():
             try:
                 db.session.add(new_customer)
                 db.session.commit()
-                flash('Account Created Successfully, You can now Login')
+                flash('Account Created Successfully, You can now Login', 'info')
                 return redirect('/login')
             except Exception as e:
                 print(e)

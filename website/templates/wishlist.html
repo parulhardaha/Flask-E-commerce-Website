@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %}Wishlist{% endblock %}
+
+{% block body %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        {% if wishlist %}
+            <h1 class="text-center mb-5 text-pink fw-bold">Your Wishlist</h1>
+            <div class="col-lg-10">
+                <div class="card border-0 shadow-sm p-4">
+                    <div class="card-body">
+                        {% for item in wishlist %}
+                        <div class="row align-items-center mb-4">
+                            <div class="col-md-3 text-center">
+                                <img src="{{ item.product.product_picture }}" class="img-fluid img-thumbnail shadow-sm rounded" height="150px" width="150px">
+                            </div>
+                            <div class="col-md-9">
+                                <h4 class="fw-bold text-dark">{{ item.product.product_name }}</h4>
+                                <p class="text-muted mb-1">Price: <strong>₹{{ item.product.current_price }}</strong></p>
+                            </div>
+                        </div>
+                        <hr>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="text-center">
+                <h1 class="text-muted">Nothing here yet! Time to add some favorites💫</h1>
+                <img src="{{ url_for('static', filename='images/empty_wishlist.gif') }}" class="img-fluid mt-3" width="500px">
+                <div class="mt-4">
+                    <a href="{{ url_for('views.home') }}" class="btn btn-pink shadow-sm">Start Shopping</a>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

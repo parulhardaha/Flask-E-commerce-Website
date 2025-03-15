@@ -7,82 +7,6 @@
 <div class="container text-center">
     <div class="row" style="margin: 10px;">
       
-        <!-- Left Sidebar - Categories -->
-        <!--<div class="col-md-2" style="margin: 3px;">
-            <div class="list-group" id="category-sidebar" style="border-radius: 10px; background: #fce4ec;">
-                <a href="" class="list-group-item list-group-item-action">
-                    <i class="fa fa-magic" aria-hidden="true"></i>
-                    <span class="link-name">Makeup</span>
-                </a>
-                <a href="" class="list-group-item list-group-item-action">
-                    <i class="fa fa-leaf" aria-hidden="true"></i>
-                    <span class="link-name">Skincare</span>
-                </a>
-                <a href="" class="list-group-item list-group-item-action">
-                    <i class="fa fa-tint" aria-hidden="true"></i>
-                    <span class="link-name">Haircare</span>
-                </a>
-                <a href="" class="list-group-item list-group-item-action">
-                    <i class="fa fa-heartbeat" aria-hidden="true"></i>
-                    <span class="link-name">Wellness</span>
-                </a>
-                <a href="" class="list-group-item list-group-item-action">
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <span class="link-name">Luxury Beauty</span>
-                </a>
-                <a href="" class="list-group-item list-group-item-action">
-                    <i class="fa fa-smile" aria-hidden="true"></i>
-                    <span class="link-name">Personal Care</span>
-                </a>
-                <a href="" class="list-group-item list-group-item-action">
-                    <i class="fa fa-diamond" aria-hidden="true"></i>
-                    <span class="link-name">Fragrances</span>
-                </a>
-            </div>
-        </div> -->
-
- 
-        <!-- Right Sidebar - Services -->
-        <!--<div class="col-md-3">
-            <div class="row" style="background-color: white; border-radius: 10px; padding: 10px;">
-                <div class="col">
-                    <img src="../static/images/help.png" alt="Help" style="width: 30px; height: 30px;">
-                </div>
-                <div class="col">
-                    <h6 style="font-size: 12px; font-weight: 600;">CUSTOMER SUPPORT</h6>
-                    <p style="font-size: small; color: gray;">24/7 Assistance</p>
-                </div>
-            </div>
-
-            <div class="row" style="background-color: white; border-radius: 10px; padding: 10px; margin-top: 10px;">
-                <div class="col">
-                    <img src="../static/images/return.png" alt="Returns" style="width: 30px; height: 30px;">
-                </div>
-                <div class="col">
-                    <h6 style="font-size: 12px; font-weight: 600;">HASSLE-FREE RETURNS</h6>
-                    <p style="font-size: small; color: gray;">Easy Refund Policy</p>
-                </div>
-            </div>
-
-            <div class="row" style="background-color: white; border-radius: 10px; padding: 10px; margin-top: 10px;">
-                <div class="col">
-                    <img src="../static/images/payment.png" alt="Payment" style="width: 30px; height: 30px;">
-                </div>
-                <div class="col">
-                    <h6 style="font-size: 12px; font-weight: 600;">SECURE PAYMENTS</h6>
-                    <p style="font-size: small; color: gray;">100% Safe Transactions</p>
-                </div>
-            </div>
-
-            <div class="row" style="margin-top: 12px;">
-                <div class="col">
-                    <img src="../static/images/nykaa_sale.gif" alt="Offers" style="width: 100%; border-radius: 10px;">
-                </div>
-            </div>
-        </div>
-    </div>
-</div>  -->
-
 <!-- Featured Categories -->
 <div class="container text-center">
     <div class="row" style="margin: 8px;">
@@ -116,6 +40,12 @@
             <strike><p style="color: gray;">₹{{ item.previous_price }}</p></strike>
             <p style="color: gray;">{{ item.in_stock }} Left</p>
             <a href="/add-to-cart/{{ item.id }}" class="btn btn-primary" style="background-color: #e91e63; border: none;">Add to Cart</a>
+
+            <a href="#" class="wishlist-btn" data-item-id="{{ item.id }}">
+                <i class="fa-heart {% if item.id in user_wishlist %}fas text-danger{% else %}far text-muted{% endif %}"></i>
+            </a>
+            
+            
         </div>
         {% endfor %}
     </div>

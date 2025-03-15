@@ -17,11 +17,12 @@
         <!-- Custom CSS -->
         <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     
-        <!-- ✅ Corrected JavaScript file linking -->
+        <!--Corrected JavaScript file linking -->
         <script src="{{ url_for('static', filename='js/myScript.js') }}"></script>
-    
-    
 
+        <script src="{{ url_for('static', filename='js/wishlist.js') }}"></script>
+
+    
 </head>
 <body>
 
@@ -44,8 +45,8 @@
 
         <div class="nav-links">
             <a href="{{ url_for('views.home') }}">Home</a>
-            <a href="#">About Us</a>
-            <a href="#">Contact Us</a>
+            <a href="/about">About Us</a>
+            <a href="/contact">Contact Us</a>
 
             <!-- Fixed Cart Section -->
             <a href="/cart">
@@ -55,7 +56,7 @@
                 {% endif %}
             </a>
 
-            <a href="#">Wishlist</a>
+            <a href="/wishlist">Wishlist</a>
 
             <!-- Account Dropdown -->
             <div class="dropdown">
@@ -99,7 +100,7 @@
 
     <!-- Footer -->
     <div class="footer">
-        © 2025 Nykaa | All rights reserved
+         A blend of Beauty & Code | By Parul with 🤍
     </div>
 
 </body>

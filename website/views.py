@@ -1,9 +1,7 @@
 from flask import Blueprint, render_template, flash, redirect, request, jsonify
-from .models import Product, Cart, Order
+from .models import Product, Cart, Order, Wishlist
 from flask_login import login_required, current_user
 from . import db
-from intasend import APIService
-
 
 views=Blueprint('views', __name__)
 
@@ -16,6 +14,7 @@ API_TOKEN='ISSecretKey_test_78f801c5-6015-473d-8fa7-dfca459c2cee'
 @views.route('/')
 def home():
     items=Product.query.filter_by(flash_sale=True)
+    #user_wishlist = [w.product_link for w in Wishlist.query.filter_by(customer_link=current_user.id).all()] if current_user.is_authenticated else []
     return render_template('home.html', items=items, cart=Cart.query.filter_by(customer_link=current_user.id).all()
                            if current_user.is_authenticated else [])
 
@@ -27,13 +26,13 @@ def add_to_cart(item_id):
     item_exists=Cart.query.filter_by(product_link=item_id,customer_link=current_user.id).first()
     if item_exists: #item is already in cart
         try:
-            item_exists.qunatity=item_exists.quantiy+1
+            item_exists.qunatity=item_exists.quantity+1
             db.session.commit()
-            flash(f'Quantity of {item_exists.product.product_name} has been updated')
+            flash(f'Quantity of {item_exists.product.product_name} has been updated', category='info')
             return redirect(request.referrer)
         except Exception as e:
             print('Quantity not updated', e)
-            flash(f'(Quantity of {item_exists.product.product_name} not updated')
+            flash(f'(Quantity of {item_exists.product.product_name} not updated', category='error')
             return redirect(request.referrer)
         
     #item does not present in cart-create new instance
@@ -45,10 +44,10 @@ def add_to_cart(item_id):
     try:
         db.session.add(new_cart_item)
         db.session.commit()
-        flash(f'{new_cart_item.product.product_name} added to cart')
+        flash(f'{new_cart_item.product.product_name} added to cart', category='warning')
     except Exception as e:
         print('Item not added to cart', e)
-        flash(f'{new_cart_item.product.product_name} has not been added to Cart')
+        flash(f'{new_cart_item.product.product_name} has not been added to Cart', category='error')
 
     return redirect(request.referrer)    
 
@@ -206,4 +205,33 @@ def search():
 @views.route('/about')
 def about():
     return render_template('/about.html')
+
+@views.route('/contact')
+def contact():
+    return render_template('/contact.html')
     
+
+
+
+@views.route('/wishlist')
+@login_required
+def show_wishlist():
+    """Show user's wishlist items"""
+    wishlist_items = Wishlist.query.filter_by(customer_link=current_user.id).all()
+    return render_template('wishlist.html', wishlist=wishlist_items)
+
+@views.route('/toggle-wishlist/<int:item_id>', methods=['POST'])
+@login_required
+def toggle_wishlist(item_id):
+    """Toggle wishlist status (add/remove)"""
+    wishlist_item = Wishlist.query.filter_by(customer_link=current_user.id, product_link=item_id).first()
+
+    if wishlist_item:
+        db.session.delete(wishlist_item)
+        db.session.commit()
+        return jsonify({"status": "removed", "message": "Removed from wishlist", "item_id": item_id})
+    else:
+        new_wishlist_item = Wishlist(customer_link=current_user.id, product_link=item_id)
+        db.session.add(new_wishlist_item)
+        db.session.commit()
+        return jsonify({"status": "added", "message": "Added to wishlist", "item_id": item_id})
