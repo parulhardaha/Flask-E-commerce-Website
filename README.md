@@ -6,7 +6,7 @@
          Proper validation and error messages for incorrect login credentials, missing fields, or duplicate accounts.
 
 ![Screenshot 2025-03-05 210349](https://github.com/user-attachments/assets/ae72ff5c-ccaf-4c4a-a352-e745b0fb5294)
-* Features an elegant, responsive design showcasing trending and newly added products, ensuring a seamless browsing experience.
+* Home Page: Features an elegant, responsive design showcasing trending and newly added products, ensuring a seamless browsing experience.
 
 ![Screenshot 2025-03-17 013820](https://github.com/user-attachments/assets/9ce85dcb-dfc2-47b8-ae2b-91b09ba878b8)
 * Product Search : Enables users to search, filter, and explore products efficiently with category-wise organization and real-time search functionality.
