@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, flash, redirect, request, jsonify, url_for
-from .models import Product, Cart, Order, Wishlist
+from .models import Product, Cart, Order, Wishlist, Customer
 from flask_login import login_required, current_user
 from . import db
 
@@ -276,3 +276,9 @@ def move_to_cart(product_id):
     cart_items = Cart.query.filter_by(customer_link=current_user.id).all()    
     
     return redirect(url_for('views.show_cart'))
+
+
+import sqlite3
+
+
+

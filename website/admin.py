@@ -5,6 +5,7 @@ from werkzeug.utils import secure_filename
 from .models import Product, Customer
 from . import db
 from website import db
+from .constant import ADMIN_USER_ID
 
 admin=Blueprint('admin', __name__)
 
@@ -16,7 +17,7 @@ def get_image(filename):
 @admin.route('/add-shop-items', methods=['GET', 'POST'])
 @login_required
 def add_shop_items():
-    if current_user.id == 1:  # Admin
+    if current_user.id == ADMIN_USER_ID:  # Admin
         form = ShopItemsForm()
         if form.validate_on_submit():
             product_name = form.product_name.data
@@ -59,7 +60,7 @@ def add_shop_items():
 @login_required
 def shop_items():
     print(f"Current User ID: {current_user.id}")  # Debug print
-    if current_user.id == 1:
+    if current_user.id == ADMIN_USER_ID:
         items = Product.query.all()  #list of all items
         print(f"Fetched {len(items)} products")  # Debug print
         return render_template('shop_items.html', items=items)
@@ -71,7 +72,7 @@ def shop_items():
 def update_item(item_id):
     print(f"Item ID --> {item_id}")  # Debugging
 
-    if current_user.id == 1:
+    if current_user.id == ADMIN_USER_ID:
         item_to_update = Product.query.get(item_id)
         if not item_to_update:
             flash("Item not found!", "danger")
@@ -110,7 +111,7 @@ def update_item(item_id):
 @admin.route('delete-item/<int:item_id>',methods=['POST'] )
 @login_required
 def delete_item(item_id):
-    if current_user.id==1:
+    if current_user.id==ADMIN_USER_ID:
         try:
             item_to_delete=Product.query.get(item_id)
             db.session.delete(item_to_delete)
@@ -129,7 +130,7 @@ def delete_item(item_id):
 @admin.route('/customers')
 @login_required
 def display_required():
-    if current_user.id==1:
+    if current_user.id==ADMIN_USER_ID:
         customers=Customer.query.all()
         return render_template('customers.html', customers=customers)
     else:
@@ -139,7 +140,7 @@ def display_required():
 @admin.route('/admin-page')
 @login_required
 def admin_page():
-    if current_user.id==1:
+    if current_user.id==ADMIN_USER_ID:
         return render_template('admin.html') 
     else:
         render_template('404.html')       

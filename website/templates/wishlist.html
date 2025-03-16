@@ -15,14 +15,16 @@
                                 <img src="{{ item.product.product_picture }}" class="img-fluid img-thumbnail shadow-sm rounded" height="150px" width="150px">
                             </div>
                             <div class="col-md-9">
-                                <h4 class="fw-bold text-dark">{{ item.product.product_name }}</h4>
-                                <p class="text-muted mb-1">Price: <strong>₹{{ item.product.current_price }}</strong></p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h4 class="fw-bold text-dark mb-1">{{ item.product.product_name }}</h4>
+                                        <p class="text-muted mb-0">Price: <strong>₹{{ item.product.current_price }}</strong></p>
+                                    </div>
+                                    <form action="/move_to_cart/{{ item.product.id }}" method="POST">
+                                        <button type="submit" class="btn btn-pink">Move to Cart</button>
+                                    </form>
+                                </div>
                             </div>
-                            <form action="/move_to_cart/{{ item.product.id }}" method="POST">
-                                <button type="submit">Move to Cart</button>
-                            </form>
-                            
-                            
                         </div>
                         <hr>
                         {% endfor %}
@@ -31,7 +33,7 @@
             </div>
         {% else %}
             <div class="text-center">
-                <h1 class="text-muted">Nothing here yet! Time to add some favorites💫</h1>
+                <h1 class="text-muted">Nothing here yet! Time to add some favorites 💫</h1>
                 <img src="{{ url_for('static', filename='images/empty_wishlist.gif') }}" class="img-fluid mt-3" width="500px">
                 <div class="mt-4">
                     <a href="{{ url_for('views.home') }}" class="btn btn-pink shadow-sm">Start Shopping</a>
