@@ -187,7 +187,7 @@ def place_order():
 @views.route('/orders')
 @login_required
 def order():
-    orders=Order.query.filter_by(customer_link=current_user.id)
+    orders=Order.query.filter_by(customer_link=current_user.id).all()
     return render_template('orders.html', orders=orders)
 
 @views.route('/search', methods=['GET'])

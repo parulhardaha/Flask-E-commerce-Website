@@ -6,7 +6,8 @@
 
 <div class="container my-5">
     <div class="row justify-content-center">
-        {% if orders %}
+        {% if orders|length > 0 %}
+
         
         <!-- Page Heading -->
         <h1 class="text-center mb-5 text-pink fw-bold">Your Orders</h1>
@@ -43,7 +44,7 @@
         <!-- No Orders Message -->
         <div class="text-center">
             <h1 class="text-muted">You have no orders yet! 😔</h1>
-            <img src="{{ url_for('static', filename='images/empty_orders.png') }}" alt="No Orders" class="img-fluid mt-3" width="300px">
+            <img src="{{ url_for('static', filename='images/no_order.webp') }}" alt="No Orders" class="img-fluid mt-3" width="300px">
             <div class="mt-4">
                 <a href="{{ url_for('views.home') }}" class="btn btn-pink shadow-sm">Start Shopping</a>
             </div>

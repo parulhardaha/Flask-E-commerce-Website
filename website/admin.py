@@ -49,7 +49,7 @@ def add_shop_items():
             except Exception as e:
                 print(f"Error: {e}")  # Debug print
                 db.session.rollback()
-                flash('The item has not been added')
+                flash('The item has not been added', 'info')
 
         return render_template('add-shop-items.html', form=form)
     else:
@@ -116,7 +116,7 @@ def delete_item(item_id):
             item_to_delete=Product.query.get(item_id)
             db.session.delete(item_to_delete)
             db.session.commit()
-            flash('One Item Deleted')
+            flash('One Item Deleted', 'error')
             return redirect('/shop_items')
         except Exception as e:
             print ('Item not deleted', e)
