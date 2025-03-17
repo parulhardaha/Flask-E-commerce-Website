@@ -28,6 +28,15 @@
                             <h4 class="fw-bold text-dark">{{ item.product.product_name }}</h4>
                             <p class="text-muted mb-1">Quantity: <strong>{{ item.quantity }}</strong></p>
                             <p class="text-muted mb-1">Price: <strong>₹{{ item.price }}</strong></p>
+                            {% if item.date_created %}
+                        {% set local_time = convert_to_ist(item.date_created) %}
+                        <p class="text-muted mb-1">Ordered on: 
+                        <strong>{{ local_time.strftime('%d %B %Y %I:%M %p') }}</strong>
+                        </p>
+                    {% else %}
+                        <p class="text-muted mb-1">Ordered on: <strong>Not Available</strong></p>
+                    {% endif %}
+
                         </div>
 
                     </div>

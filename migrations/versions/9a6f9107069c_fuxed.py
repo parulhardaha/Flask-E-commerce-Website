@@ -1,8 +1,8 @@
-"""Initial migration
+"""Fuxed
 
-Revision ID: 387013f0c24d
+Revision ID: cd201c64ca88
 Revises: 
-Create Date: 2025-03-15 13:26:43.915155
+Create Date: 2025-03-17 18:59:42.284895
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '387013f0c24d'
+revision = 'cd201c64ca88'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -22,7 +22,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('email', sa.String(length=50), nullable=True),
     sa.Column('username', sa.String(length=100), nullable=True),
-    sa.Column('password_hash', sa.String(length=50), nullable=True),
+    sa.Column('password_hash', sa.String(length=200), nullable=True),
     sa.Column('date_joined', sa.DateTime(), nullable=True),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email')
@@ -52,6 +52,7 @@ def upgrade():
     sa.Column('quantity', sa.Integer(), nullable=False),
     sa.Column('price', sa.Float(), nullable=False),
     sa.Column('status', sa.String(length=100), nullable=False),
+    sa.Column('date_created', sa.DateTime(), nullable=True),
     sa.Column('customer_link', sa.Integer(), nullable=False),
     sa.Column('product_link', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['customer_link'], ['customer.id'], ),

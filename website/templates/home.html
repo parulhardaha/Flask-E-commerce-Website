@@ -4,51 +4,68 @@
 
 {% block body %}
 
-<div class="container text-center">
-    <div class="row" style="margin: 10px;">
-      
-<!-- Featured Categories -->
-<div class="container text-center">
-    <div class="row" style="margin: 8px;">
+<div class="container text-center my-5">
+
+    <!-- Featured Categories -->
+    <div class="row mb-5">
         <div class="col category-box">
-            <img src="../static/images/nykaa_promo_1.gif" alt="" style="width: 250px; height: 280px;">
-            <h6><b>New Makeup Arrivals</b></h6>
+            <img src="../static/images/nykaa_promo_1.gif" alt="" class="img-fluid rounded-3 shadow-sm" style="height: 240px;">
+            <h6 class="mt-2 fw-bold">New Makeup Arrivals</h6>
         </div>
         <div class="col category-box">
-            <img src="../static/images/nykaa_promo_2.gif" alt="" style="width: 250px; height: 280px;">
-            <h6><b>Best in Skincare</b></h6>
+            <img src="../static/images/nykaa_promo_2.gif" alt="" class="img-fluid rounded-3 shadow-sm" style="height: 240px;">
+            <h6 class="mt-2 fw-bold">Best in Skincare</h6>
         </div>
         <div class="col category-box">
-            <img src="../static/images/nykaa_promo_improved_3.gif" alt="" style="width: 250px; height: 280px;">
-            <h6><b> Hair Essentials</b></h6>
+            <img src="../static/images/nykaa_promo_improved_3.gif" alt="" class="img-fluid rounded-3 shadow-sm" style="height: 240px;">
+            <h6 class="mt-2 fw-bold">Hair Essentials</h6>
         </div>
         <div class="col category-box">
-            <img src="../static/images/nykaa_promo_improved_4.gif" alt="" style="width: 250px; height: 280px;">
-            <h6><b>Luxury Fragrances</b></h6>
+            <img src="../static/images/nykaa_promo_improved_4.gif" alt="" class="img-fluid rounded-3 shadow-sm" style="height: 240px;">
+            <h6 class="mt-2 fw-bold">Luxury Fragrances</h6>
         </div>
     </div>
-</div>
 
-<!-- Product Listings -->
-<div class="container text-center">
-    <div class="row" style="margin: 8px; background-color: rgb(219, 218, 218);">
+    <!-- Product Listings -->
+    <div class="row justify-content-center" style="background-color: #ffe1e1; border-radius: 12px; padding: 20px;">
         {% for item in items %}
-        <div class="col product-card" style="background-color: white; border-radius: 10px; padding: 10px; margin: 10px;">
-            <img src="{{ item.product_picture }}" alt="{{ item.product_name }}" style="height: 202px; width: 180px; border-radius: 10px;">
-            <h6 style="color: gray; margin-top: 5px;">{{ item.product_name }}</h6>
-            <h5 style="font-weight: 600; font-family: 'Arial', sans-serif;">₹{{ item.current_price }}</h5>
-            <strike><p style="color: gray;">₹{{ item.previous_price }}</p></strike>
-            <p style="color: gray;">{{ item.in_stock }} Left</p>
-            <a href="/add-to-cart/{{ item.id }}" class="btn btn-primary" style="background-color: #e91e63; border: none;">Add to Cart</a>
-
-            <a href="#" class="wishlist-btn" data-item-id="{{ item.id }}">
-                <i class="fa-heart {% if item.id in user_wishlist %}fas text-danger{% else %}far text-muted{% endif %}"></i>
-            </a>
-            
-            
+        <div class="col-md-3 col-sm-6 mb-4">
+            <div class="card shadow-sm border-0 rounded-4 position-relative" style="background-color: #ffffff;">
+                <!-- Wishlist icon -->
+                <a href="#" class="wishlist-btn position-absolute top-0 end-0 m-2" data-item-id="{{ item.id }}">
+                    <i class="fa-heart {% if item.id in user_wishlist %}fas text-danger{% else %}far text-muted{% endif %} fs-5"></i>
+                </a>
+                <!-- Product Image -->
+                <img src="{{ item.product_picture }}" alt="{{ item.product_name }}" class="card-img-top rounded-top-4" style="height: 180px; object-fit: contain; padding: 10px;">
+                <!-- Card Body -->
+                <div class="card-body text-center">
+                    <h6 class="text-secondary small mb-1">{{ item.product_name }}</h6>
+                    <h5 class="fw-bold mb-1">₹{{ item.current_price }}</h5>
+                    <p class="text-muted small mb-1"><strike>₹{{ item.previous_price }}</strike></p>
+                    <p class="text-muted small mb-2">{{ item.in_stock }} Left</p>
+                    <a href="/add-to-cart/{{ item.id }}" class="btn btn-pink w-75 rounded-pill">Add to Cart</a>
+                </div>
+            </div>
         </div>
         {% endfor %}
     </div>
 </div>
+
+<style>
+    .btn-pink {
+        background-color: #e91e63;
+        color: white;
+        border: none;
+        font-size: 0.85rem;
+    }
+    .btn-pink:hover {
+        background-color: #d81b60;
+    }
+    .wishlist-btn i:hover {
+        color: #e91e63 !important;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+</style>
 
 {% endblock %}

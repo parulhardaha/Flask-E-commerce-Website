@@ -2,6 +2,8 @@ from flask import Blueprint, render_template, flash, redirect, request, jsonify,
 from .models import Product, Cart, Order, Wishlist, Customer
 from flask_login import login_required, current_user
 from . import db
+from datetime import datetime
+import pytz
 
 views=Blueprint('views', __name__)
 
@@ -291,4 +293,14 @@ def remove(wish_id):
     return redirect(url_for('views.show_wishlist')) 
 
    
+def convert_to_ist(dt):
+    if dt:
+        utc = pytz.utc
+        ist = pytz.timezone('Asia/Kolkata')
+        dt = utc.localize(dt) if dt.tzinfo is None else dt
+        return dt.astimezone(ist)
+    return None
 
+@views.context_processor
+def inject_functions():
+    return dict(convert_to_ist=convert_to_ist)
