@@ -23,7 +23,7 @@ def login():
                 login_user(customer)
                 return redirect('/')
             else:
-                flash('Incorrect Email or Password')    
+                flash('Incorrect Email or Password', 'error')    
         else:
             flash('Account does not exist please Sign Up', category='error')    
     return render_template('login.html', form=form)
@@ -55,7 +55,7 @@ def sign_up():
                 return redirect('/login')
             except Exception as e:
                 print(e)
-                flash('Account Not Created!!, Email already exists')
+                flash('Account Not Created!!, Email already exists', 'danger')
 
             form.email.data=''    
             form.username.data=''

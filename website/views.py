@@ -241,33 +241,32 @@ def toggle_wishlist(item_id):
 @views.route('/move_to_cart/<int:product_id>', methods=['POST'])
 @login_required
 def move_to_cart(product_id):
-    print(f"🛒 Moving product {product_id} from wishlist to cart...")  # Debug
 
     # Find the wishlist item
     wishlist_item = Wishlist.query.filter_by(customer_link=current_user.id, product_link=product_id).first()
-    print(f"✅ Wishlist item found: {wishlist_item}")  # Debug
+    print(f" Wishlist item found: {wishlist_item}")  # Debug
 
     if wishlist_item:
         # Check if the product exists
         product = Product.query.get(product_id)
         if not product or product.in_stock <= 0:
             flash("This product is out of stock.", "warning")
-            print("⚠️ Product is out of stock!")  # Debug
+            print("Product is out of stock!")  # Debug
             return redirect(url_for('views.wishlist'))
 
         # Check if the product is already in the cart
         cart_item = Cart.query.filter_by(customer_link=current_user.id, product_link=product_id).first()
         if cart_item:
             cart_item.quantity += 1  # Increase quantity if already in cart
-            print(f"🔄 Increased quantity of product {product_id} in cart.")  # Debug
+            print(f" Increased quantity of product {product_id} in cart.", 'info')  # Debug
         else:
             new_cart_item = Cart(customer_link=current_user.id, product_link=product_id, quantity=1)
             db.session.add(new_cart_item)
-            print(f"🆕 Added product {product_id} to cart.")  # Debug
+            print(f" Added product {product_id} to cart.", "info")  # Debug
 
         # Remove from wishlist
         db.session.delete(wishlist_item)
-        print(f"❌ Removed product {product_id} from wishlist.")  # Debug
+        print(f"Removed product {product_id} from wishlist.", "info")  # Debug
 
         # Save changes
         db.session.commit()
@@ -278,7 +277,18 @@ def move_to_cart(product_id):
     return redirect(url_for('views.show_cart'))
 
 
-import sqlite3
+@views.route('/remove/<int:wish_id>', methods=['POST'])
+@login_required
+def remove(wish_id):
 
+    wish_item = Wishlist.query.get(wish_id)
+    if wish_item:
+        db.session.delete(wish_item)
+        db.session.commit()
+    else:
+        print("nothing found to delete")
 
+    return redirect(url_for('views.show_wishlist')) 
+
+   
 
