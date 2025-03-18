@@ -626,7 +626,7 @@ body {
 }
 
 .navbar-nav .nav-item {
-    margin: 0 16px; /* Add spacing between each nav item */
+    margin: 0 13px; /* Add spacing between each nav item */
 }
 
 .navbar-nav .nav-link {

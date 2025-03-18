@@ -4,33 +4,34 @@
 
 {% block body %}
 
-<section class="login-page"> <!-- Add this class -->
-    <div class="base-content">
-        <div class="form-container">
-            <h3 class="login-title">Login to Start Shopping</h3>
+<section class="login-page" style="min-height: 100vh; display: flex; align-items: center; justify-content: center; background: url('/static/images/background.jpg') no-repeat center center/cover;">
+    <div class="base-content" style="width: 100%; max-width: 600px;">
+        <div class="form-container" style="padding: 50px; background: rgba(228, 200, 200, 0.95); border-radius: 12px; box-shadow: 0 0 20px rgba(0,0,0,0.15);">
+            <h3 class="login-title" style="text-align: center; margin-bottom: 35px; font-size: 28px; color: #333;">Login to Start Shopping</h3>
 
             <form method="POST" class="login-form">
-                {{ form.hidden_tag() }} <!-- CSRF token -->
+                {{ form.hidden_tag() }}
 
-                <div class="input-group">
-                    <label>Email Address</label>
-                    {{ form.email(class="input-field") }}
+                <div class="input-group" style="margin-bottom: 25px;">
+                    <label style="font-weight: 600; font-size: 16px;">Email Address</label>
+                    {{ form.email(class="input-field", style="width: 100%; padding: 16px; font-size: 18px; border: 1px solid #ccc; border-radius: 8px;") }}
                 </div>
 
-                <div class="input-group">
-                    <label>Password</label>
-                    {{ form.password(class="input-field") }}
+                <div class="input-group" style="margin-bottom: 25px;">
+                    <label style="font-weight: 600; font-size: 16px;">Password</label>
+                    {{ form.password(class="input-field", style="width: 100%; padding: 16px; font-size: 18px; border: 1px solid #ccc; border-radius: 8px;") }}
                 </div>
 
-                <!-- Login button centered -->
-                <div class="buttons">
-                    {{ form.submit(class="login-btn") }}
+                <div class="buttons" style="text-align: center; margin-bottom: 20px;">
+                    {{ form.submit(class="login-btn", style="width: 100%; padding: 16px; font-size: 18px; background: #ff4081; color: white; border: none; border-radius: 8px; cursor: pointer;") }}
                 </div>
 
-                <!-- Sign up link below button -->
-                <a href="{{ url_for('auth.sign_up') }}" class="sign-up-link">Don't have an account? Sign up</a>
+                <div style="text-align: center;">
+                    <a href="{{ url_for('auth.sign_up') }}" class="sign-up-link" style="font-size: 15px; color: #ff4081;">Don't have an account? Sign up</a>
+                </div>
             </form>
         </div>
     </div>
 </section>
+
 {% endblock %}

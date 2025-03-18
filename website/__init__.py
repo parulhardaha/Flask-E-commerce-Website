@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template
+from flask import Flask, render_template, flash, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_migrate import Migrate
@@ -31,6 +31,8 @@ def create_app():
     def page_not_found(error):
         return render_template('404.html')
 
+    from .models import Customer
+    
     login_manager=LoginManager() #keep track of customer,who have logged in
     login_manager.init_app(app)
     login_manager.login_view='auth.login'
@@ -40,6 +42,11 @@ def create_app():
     @login_manager.user_loader
     def load_user(id):
         return Customer.query.get(int(id))
+    
+    @login_manager.unauthorized_handler
+    def unauthorized():
+        flash("Please Login to Access", "warning")
+        return redirect(url_for('auth.login'))
 
     from .views import views
     from .admin import admin
