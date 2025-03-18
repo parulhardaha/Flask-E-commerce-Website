@@ -568,3 +568,105 @@ body {
     max-width: 80%;
     font-family: 'Times New Roman', serif;
 }
+
+
+.navbar .nav-link {
+    font-weight: 500;
+    margin-right: 15px;
+}
+
+.navbar-brand {
+    font-size: 24px;
+}
+
+.search-input {
+    border-radius: 30px;
+    padding: 5px 15px;
+}
+
+.search-btn {
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 5px 10px;
+}
+
+.footer {
+    font-weight: bold;
+}
+
+.cute-input {
+    border-radius: 25px;
+    padding: 8px 15px;
+    border: 1px solid #d98bc7;
+    background-color: #fff0f5;
+    font-size: 14px;
+}
+
+.cute-btn {
+    background-color: #d98bc7;
+    color: white;
+    border-radius: 25px;
+    padding: 8px 15px;
+    border: none;
+    transition: background 0.3s ease;
+}
+
+.cute-btn:hover {
+    background-color: #c071b5;
+}
+
+.navbar-nav .nav-link {
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+    background-color: #fff0f5;
+    color: #d63384;
+}
+
+.navbar-nav .nav-item {
+    margin: 0 16px; /* Add spacing between each nav item */
+}
+
+.navbar-nav .nav-link {
+    font-size: 16px;
+    padding: 5px 10px;
+}
+
+@media (min-width: 992px) {
+    .navbar .navbar-nav {
+        gap: 15px;
+    }
+}
+
+.search-bar input[type="text"] {
+    width: 250px; /* increase this to your liking, e.g., 300px */
+    padding: 8px 15px;
+    border-radius: 25px;
+    border: 1px solid #ccc;
+    transition: width 0.3s ease;
+}
+
+.search-bar input[type="text"]:focus {
+    width: 300px; /* slightly expand on focus for a smooth effect */
+    outline: none;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border-radius: 25px;
+    padding: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.search-bar button {
+    background: #ff66b2;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 50%;
+    margin-left: 5px;
+    cursor: pointer;
+}

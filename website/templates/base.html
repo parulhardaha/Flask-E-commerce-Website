@@ -3,105 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nykaa | {% block title %} {% endblock %}</title>
-    
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    
-        <!-- FontAwesome -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    
-        <!-- Bootstrap & External Styles -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
-    
-        <!-- Custom CSS -->
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    
-        <!--Corrected JavaScript file linking -->
-        <script src="{{ url_for('static', filename='js/myScript.js') }}"></script>
+    <title>Nykaa | {% block title %}{% endblock %}</title>
 
-        <script src="{{ url_for('static', filename='js/wishlist.js') }}"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <!-- Custom JS -->
+    <script src="{{ url_for('static', filename='js/myScript.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/wishlist.js') }}"></script>
+
 </head>
 <body>
 
-    <!-- Header -->
-    <div class="navbar">
-        <div class="logo-container">
-            <img src="{{ url_for('static', filename='images/nykaa_logo.jpg') }}" alt="Nykaa Logo">
-            <h1>Nykaa</h1>
-        </div>
+<!-- responsive Navbar -->
+<nav class="navbar navbar-expand-lg" style="background-color: #f06292;">
+  <div class="container-fluid">
+    <!-- Logo & Brand -->
+    <a class="navbar-brand d-flex align-items-center text-white fw-bold" href="{{ url_for('views.home') }}">
+        <img src="{{ url_for('static', filename='images/nykaa_logo.jpg') }}" alt="Nykaa Logo" style="width:40px; height:40px; border-radius:50%; margin-right:10px;">
+        Nykaa
+    </a>
 
-        <!-- 🌸 Beautiful Search Bar -->
-    <div class="search-bar">
-        <form action="{{ url_for('views.search') }}" method="GET" class="d-flex">
-            <input type="text" name="query" class="search-input" placeholder="Search for products...">
-            <button type="submit" class="search-btn">
-                <i class="fa-solid fa-search"></i>
-            </button>
-        </form>
-    </div>
+    <!-- Toggle Button for Mobile -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-        <div class="nav-links">
-            <a href="{{ url_for('views.home') }}">Home</a>
-            <a href="/about">About Us</a>
-            <a href="/contact">Contact Us</a>
-
-            <!-- Fixed Cart Section -->
-            <a href="/cart">
-                <i class="fa-solid fa-cart-shopping"></i> Cart 
-                {% if cart|length > 0 %}
-                    <span class="badge bg-danger">{{ cart|length }}</span>
-                {% endif %}
-            </a>
-
-            <a href="/wishlist">🤍Wishlist</a>
-
-            <!-- Account Dropdown -->
-            <div class="dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="accountDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Account
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="accountDropdown">
-                    {% if current_user.is_authenticated %}
-                    <li><a class="dropdown-item" href="/profile/{{ current_user.id }}"><i class="fa-solid fa-user"></i> Profile</a></li>
-                    <li><a class="dropdown-item" href="/orders"><i class="fa-solid fa-truck-fast"></i> Orders</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="/logout"><i class="fa-solid fa-sign-out-alt"></i> Logout</a></li>
-                    {% else %}
-                        <li><a class="dropdown-item" href="/login"><i class="fa-solid fa-sign-in-alt"></i> Login</a></li>
-                    {% endif %}
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <!-- Flash Messages (Added Here) -->
-    <div class="container mt-3">
-        {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                <div class="flash-messages">
-                    {% for category, message in messages %}
-                        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
-                            {{ message }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                    {% endfor %}
-                </div>
+    <!-- Nav Links & Search -->
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav ms-auto align-items-lg-center">
+        <li class="nav-item"><a class="nav-link text-white" href="{{ url_for('views.home') }}">Home</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="/about">About Us</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="/contact">Contact Us</a></li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="/cart">
+            <i class="fa-solid fa-cart-shopping"></i> Cart
+            {% if cart|length > 0 %}
+              <span class="badge bg-danger">{{ cart|length }}</span>
             {% endif %}
-        {% endwith %}
-    </div>
+          </a>
+        </li>
+        <li class="nav-item"><a class="nav-link text-white" href="/wishlist">🤍Wishlist</a></li>
 
-    <!-- Page Content -->
-    <div class="content">
-        {% block body %}{% endblock %}
-    </div>
+        <!-- Account Dropdown -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-white" href="#" id="accountDropdown" role="button" data-bs-toggle="dropdown">
+            Account
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end">
+            {% if current_user.is_authenticated %}
+              <li><a class="dropdown-item" href="/profile/{{ current_user.id }}"><i class="fa-solid fa-user"></i> Profile</a></li>
+              <li><a class="dropdown-item" href="/orders"><i class="fa-solid fa-truck-fast"></i> Orders</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="/logout"><i class="fa-solid fa-sign-out-alt"></i> Logout</a></li>
+            {% else %}
+              <li><a class="dropdown-item" href="/login"><i class="fa-solid fa-sign-in-alt"></i> Login</a></li>
+            {% endif %}
+          </ul>
+        </li>
+      </ul>
 
-    <!-- Footer -->
-    <div class="footer">
-         A blend of Beauty & Code | By Parul with 🤍
+          <!-- Search Bar -->
+                <div class="search-bar ms-auto me-3">
+                    <form action="{{ url_for('views.search') }}" method="GET" class="d-flex align-items-center">
+                        <input type="text" name="query" class="form-control cute-input" placeholder="Search beauty, skincare, makeup...">
+                        <button type="submit" class="btn cute-btn ms-2">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </form>
+                </div>
+
     </div>
+  </div>
+</nav>
+
+<!--  Flash Messages -->
+<style>
+    .custom-alert {
+        background-color: #fce4ec;  /* light pink */
+        color: #333;
+        border: 1px solid #f06292;  /* pink border */
+    }
+</style>
+
+<div class="container mt-3">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-messages">
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} custom-alert alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+</div>
+
+<!-- 📝 Page Content -->
+<div class="content">
+    {% block body %}{% endblock %}
+</div>
+
+<!-- 🌸 Footer -->
+<div class="footer text-center p-3" style="background-color: #f06292; color: white;">
+    A blend of Beauty & Code | By Parul with 🤍
+</div>
 
 </body>
 </html>

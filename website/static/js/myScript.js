@@ -107,3 +107,5 @@ $(document).on("click", ".move-to-cart-btn", function () {
     });
 });
 
+
+
